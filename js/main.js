@@ -116,35 +116,43 @@ function getRandomRecipes(count = 4) {
     return shuffled.slice(0, count);
 }
 
-// Проверяет, входит ли переданная дата в какой-либо праздник
-function getHolidayForDate(date) {
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
 
-    return holidays.find(holiday => {
-        const [startDay, startMonth] = holiday.date_start;
-        const [endDay, endMonth] = holiday.date_end;
-
-        const startDate = new Date(year, startMonth - 1, startDay);
-        let endDate = new Date(year, endMonth - 1, endDay);
-        if (endDate < startDate) {
-            endDate = new Date(year + 1, endMonth - 1, endDay);
-        }
-
-        const currentDate = new Date(year, month - 1, day);
-        // Для праздников, переходящих через год, нужно сравнивать
-        if (startMonth > endMonth) {
-            // Праздник начинается в одном году, заканчивается в следующем
-            if (month > startMonth || month < endMonth) {
-                return true;
-            }
-        }
-        return currentDate >= startDate && currentDate <= endDate;
-    });
-}
 
 // Форматирование даты
 function formatDate(date) {
     return date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
 }
+
+<main class="container">
+    <div class="main-layout">
+        <!-- Левая колонка: календарь -->
+        <aside class="calendar-sidebar">
+            <section class="calendar-section">
+                <h2 class="section-title">📅 Календарь праздников</h2>
+                <div id="calendar" class="calendar"></div>
+            </section>
+        </aside>
+
+        <!-- Правая колонка: основной контент -->
+        <div class="main-content">
+            <!-- Блок текущего праздника (или приветственный) -->
+            <section id="current-holiday" class="hero">
+                <h2 id="holiday-title"></h2>
+                <p id="holiday-description"></p>
+                <a id="holiday-link" href="" class="btn">Праздничные рецепты →</a>
+            </section>
+
+            <!-- Сезонные продукты -->
+            <section>
+                <h2 class="section-title">🍅 Сейчас в сезоне</h2>
+                <div id="products-grid" class="grid"></div>
+            </section>
+
+            <!-- Рецепты недели -->
+            <section>
+                <h2 class="section-title">📖 Рецепты недели</h2>
+                <div id="recipes-grid" class="grid"></div>
+            </section>
+        </div>
+    </div>
+</main>
