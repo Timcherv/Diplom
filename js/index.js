@@ -2,16 +2,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadAllData();
     document.body.classList.add(getCurrentSeason());
 
-    // Текущий праздник
     const currentHoliday = getCurrentHoliday();
+    const heroSection = document.getElementById('current-holiday');
+    const titleElem = document.getElementById('holiday-title');
+    const descElem = document.getElementById('holiday-description');
+    const linkElem = document.getElementById('holiday-link');
+    
     if (currentHoliday) {
-        document.getElementById('holiday-title').textContent = currentHoliday.title;
-        document.getElementById('holiday-description').textContent = 
-            currentHoliday.short_desc || currentHoliday.description.substring(0, 100) + '…';
-        document.getElementById('holiday-link').href = `holiday.html?id=${currentHoliday.id}`;
+        // Если есть текущий праздник — показываем его
+        titleElem.textContent = currentHoliday.title;
+        descElem.textContent = currentHoliday.short_desc || currentHoliday.description.substring(0, 100) + '…';
+        linkElem.href = `holiday.html?id=${currentHoliday.id}`;
+        linkElem.textContent = 'Праздничные рецепты →';
     } else {
-        document.getElementById('current-holiday').style.display = 'none';
+        // Если нет — показываем общий блок со ссылкой на все праздники
+        titleElem.textContent = 'Праздничные рецепты';
+        descElem.textContent = 'Вдохновляйтесь рецептами к разным праздникам круглый год';
+        linkElem.href = 'holidays.html'; 
+        linkElem.textContent = 'Все праздники →';
     }
+    
 
     // Сезонные продукты (первые 4)
     const seasonalProducts = getSeasonalProducts().slice(0, 4);
