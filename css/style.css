@@ -204,14 +204,6 @@ nav a.active {
     margin: 1rem 0 0.5rem;
 }
 
-/* Бейджи для уровня бюджета */
-.badge {
-    padding: 0.25rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: white;
-}
 
 .badge.budget {
     background-color: #2ecc71;
@@ -428,4 +420,34 @@ footer {
 .legend-color.holiday {
     background-color: #fff3cd;
     border: 2px solid #ffc107;
+}
+/* Двухколоночный макет */
+.main-layout {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.calendar-sidebar {
+    flex: 0 0 300px; /* фиксированная ширина календаря */
+    position: sticky;
+    top: 20px; /* прилипает при прокрутке */
+}
+
+.main-content {
+    flex: 1; /* занимает оставшееся пространство */
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .main-layout {
+        flex-direction: column;
+    }
+    
+    .calendar-sidebar {
+        flex: none;
+        width: 100%;
+        position: static; /* отключаем прилипание */
+        margin-bottom: 2rem;
+    }
 }

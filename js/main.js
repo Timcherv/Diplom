@@ -133,11 +133,11 @@ function getHolidayForDate(date) {
         }
 
         const currentDate = new Date(year, month - 1, day);
-        // Для праздников, переходящих через год, нужно аккуратно сравнивать
+        // Для праздников, переходящих через год, нужно сравнивать
         if (startMonth > endMonth) {
             // Праздник начинается в одном году, заканчивается в следующем
             if (month > startMonth || month < endMonth) {
-                return true; // упрощённо, но для календаря сойдёт
+                return true;
             }
         }
         return currentDate >= startDate && currentDate <= endDate;

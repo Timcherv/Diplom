@@ -97,16 +97,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     const linkElem = document.getElementById('holiday-link');
     
     if (currentHoliday) {
-        // Если есть текущий праздник — показываем его
         titleElem.textContent = currentHoliday.title;
         descElem.textContent = currentHoliday.short_desc || currentHoliday.description.substring(0, 100) + '…';
         linkElem.href = `holiday.html?id=${currentHoliday.id}`;
         linkElem.textContent = 'Праздничные рецепты →';
     } else {
-        // Если нет — показываем общий блок со ссылкой на все праздники
+        // Если нет активного праздника — показываем ссылку на все праздники
         titleElem.textContent = 'Праздничные рецепты';
         descElem.textContent = 'Вдохновляйтесь рецептами к разным праздникам круглый год';
-        linkElem.href = 'holidays.html'; // создадим такую страницу
+        linkElem.href = 'holidays.html';
         linkElem.textContent = 'Все праздники →';
     }
     
