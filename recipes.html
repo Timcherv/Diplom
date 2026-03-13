@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сезонные рецепты | Все рецепты</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">🍴 <span>Сезон</span>Рецепты</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="recipes.html" class="active">Все рецепты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 class="section-title">Все рецепты</h1>
+        
+        <div class="filters">
+            <div class="filter-group">
+                <label for="filter-holiday">По празднику:</label>
+                <select id="filter-holiday"></select>
+            </div>
+            <div class="filter-group">
+                <label for="filter-product">По продукту:</label>
+                <select id="filter-product"></select>
+            </div>
+            <button id="apply-filters" class="btn">Применить</button>
+        </div>
+
+        <div id="recipes-grid" class="grid"></div>
+    </main>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/recipes.js"></script>
+</body>
+</html>
