@@ -116,6 +116,34 @@ function getRandomRecipes(count = 4) {
     return shuffled.slice(0, count);
 }
 
+// Проверяет, входит ли переданная дата в какой-либо праздник
+function getHolidayForDate(date) {
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    return holidays.find(holiday => {
+        const [startDay, startMonth] = holiday.date_start;
+        const [endDay, endMonth] = holiday.date_end;
+
+        const startDate = new Date(year, startMonth - 1, startDay);
+        let endDate = new Date(year, endMonth - 1, endDay);
+        if (endDate < startDate) {
+            endDate = new Date(year + 1, endMonth - 1, endDay);
+        }
+
+        const currentDate = new Date(year, month - 1, day);
+        // Для праздников, переходящих через год, нужно аккуратно сравнивать
+        if (startMonth > endMonth) {
+            // Праздник начинается в одном году, заканчивается в следующем
+            if (month > startMonth || month < endMonth) {
+                return true; // упрощённо, но для календаря сойдёт
+            }
+        }
+        return currentDate >= startDate && currentDate <= endDate;
+    });
+}
+
 // Форматирование даты
 function formatDate(date) {
     return date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
