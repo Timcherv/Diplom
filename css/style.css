@@ -205,18 +205,6 @@ nav a.active {
 }
 
 
-.badge.budget {
-    background-color: #2ecc71;
-}
-
-.badge.medium {
-    background-color: #f39c12;
-}
-
-.badge.expensive {
-    background-color: #e74c3c;
-}
-
 /* Индикатор сезона (полоски месяцев) */
 .season-bars {
     display: flex;
