@@ -86,7 +86,13 @@ function renderCalendar(year, month) {
 // Вызов после загрузки данных
 document.addEventListener('DOMContentLoaded', async () => {
     await loadAllData();
-    document.body.classList.add(getCurrentSeason());
+
+    // Определяем и применяем сезон для body
+    const seasons = ['winter', 'spring', 'summer', 'autumn'];
+    // Удаляем все возможные сезонные классы, чтобы не наслаивались
+    document.body.classList.remove(...seasons);
+    const currentSeason = getCurrentSeason();
+    document.body.classList.add(currentSeason);
 
     const currentHoliday = getCurrentHoliday();
     const heroSection = document.getElementById('current-holiday');
@@ -104,7 +110,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Если нет — показываем общий блок со ссылкой на все праздники
         titleElem.textContent = 'Праздничные рецепты';
         descElem.textContent = 'Вдохновляйтесь рецептами к разным праздникам круглый год';
-        linkElem.href = 'holidays.html'; // создадим такую страницу
+        linkElem.href = 'holidays.html';
         linkElem.textContent = 'Все праздники →';
     }
 
