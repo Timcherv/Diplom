@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рецепт | Сезонные рецепты</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Дополнительные стили для страницы рецепта */
+        .recipe-header {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .recipe-image {
+            flex: 0 0 300px;
+        }
+        
+        .recipe-image img {
+            width: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+        
+        .recipe-title-section {
+            flex: 1;
+        }
+        
+        .recipe-meta {
+            display: flex;
+            gap: 2rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: var(--bg-light);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .recipe-section {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .recipe-section h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .ingredients-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .ingredients-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .ingredients-list li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .steps-list {
+            padding-left: 1.5rem;
+        }
+        
+        .steps-list li {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .related-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        
+        .related-link {
+            background: var(--bg-light);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        
+        .related-link:hover {
+            background: var(--accent);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .recipe-header {
+                flex-direction: column;
+            }
+            
+            .recipe-image {
+                flex: none;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">🍴 <span>Сезон</span>Рецепты</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="recipes.html">Все рецепты</a></li>
+                    <li><a href="holidays.html">Праздники</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="recipe-content">
+            <!-- Здесь будет загружаться рецепт -->
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Сезонные рецепты</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadAllData();
+            document.body.classList.add(getCurrentSeason());
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const recipeId = urlParams.get('id');
+
+            if (!recipeId) {
+                document.getElementById('recipe-content').innerHTML = '<p class="error">Рецепт не указан</p>';
+                return;
+            }
+
+            const recipe = recipes.find(r => r.id == recipeId);
+            if (!recipe) {
+                document.getElementById('recipe-content').innerHTML = '<p class="error">Рецепт не найден</p>';
+                return;
+            }
+
+            // Находим связанные праздник и продукт (если есть)
+            const relatedHoliday = recipe.holiday_id ? holidays.find(h => h.id == recipe.holiday_id) : null;
+            const relatedProduct = recipe.product_id ? products.find(p => p.id == recipe.product_id) : null;
+
+            // Форматируем ингредиенты (разделяем по запятой или переносу строки)
+            const ingredientsList = recipe.ingredients 
+                ? recipe.ingredients.split(',').map(i => i.trim()).filter(i => i)
+                : ['Ингредиенты не указаны'];
+
+            // Форматируем инструкции (разделяем по точкам или переносам строк)
+            const stepsList = recipe.instructions
+                ? recipe.instructions.split(/[.\n]+/).filter(s => s.trim().length > 0).map(s => s.trim() + '.')
+                : ['Инструкция отсутствует'];
+
+            // Генерируем HTML
+            const html = `
+                <div class="recipe-header">
+                    <div class="recipe-image">
+                        <img src="${recipe.image_url || 'https://via.placeholder.com/400x300?text=' + encodeURIComponent(recipe.title)}" 
+                             alt="${recipe.title}">
+                    </div>
+                    <div class="recipe-title-section">
+                        <h1>${recipe.title}</h1>
+                        
+                        <div class="recipe-meta">
+                            <span class="meta-item">⏱ ${recipe.cooking_time || '?'} мин</span>
+                            ${relatedHoliday ? `
+                                <a href="holiday.html?id=${relatedHoliday.id}" class="meta-item" style="text-decoration: none; color: inherit;">
+                                    🎉 ${relatedHoliday.title}
+                                </a>
+                            ` : ''}
+                            ${relatedProduct ? `
+                                <a href="product.html?id=${relatedProduct.id}" class="meta-item" style="text-decoration: none; color: inherit;">
+                                    🥕 ${relatedProduct.title}
+                                </a>
+                            ` : ''}
+                        </div>
+                        
+                        ${recipe.description ? `<p class="recipe-description">${recipe.description}</p>` : ''}
+                    </div>
+                </div>
+
+                <div class="recipe-section">
+                    <h2>📋 Ингредиенты</h2>
+                    <ul class="ingredients-list">
+                        ${ingredientsList.map(i => `<li>${i}</li>`).join('')}
+                    </ul>
+                </div>
+
+                <div class="recipe-section">
+                    <h2>👨‍🍳 Приготовление</h2>
+                    <ol class="steps-list">
+                        ${stepsList.map(step => `<li>${step}</li>`).join('')}
+                    </ol>
+                </div>
+
+                ${relatedHoliday || relatedProduct ? `
+                    <div class="recipe-section">
+                        <h2>🔗 Связано с</h2>
+                        <div class="related-links">
+                            ${relatedHoliday ? `
+                                <a href="holiday.html?id=${relatedHoliday.id}" class="related-link">
+                                    🎉 Праздник: ${relatedHoliday.title}
+                                </a>
+                            ` : ''}
+                            ${relatedProduct ? `
+                                <a href="product.html?id=${relatedProduct.id}" class="related-link">
+                                    🥕 Продукт: ${relatedProduct.title}
+                                </a>
+                            ` : ''}
+                        </div>
+                    </div>
+                ` : ''}
+            `;
+
+            document.getElementById('recipe-content').innerHTML = html;
+        });
+    </script>
+</body>
+</html>

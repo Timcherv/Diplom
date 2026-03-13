@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <div class="card-content">
                         <h3>${r.title}</h3>
                         <p>${r.ingredients ? r.ingredients.substring(0, 80) + '…' : ''}</p>
-                        <a href="recipes.html?recipe=${r.id}" class="btn" style="padding: 0.5rem 1rem;">Подробнее</a>
+                        <a href="recipe.html?id=${r.id}" class="btn" style="padding: 0.5rem 1rem;">Подробнее</a>
                     </div>
                 </div>
             `).join('');
