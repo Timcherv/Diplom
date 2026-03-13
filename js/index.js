@@ -86,26 +86,24 @@ function renderCalendar(year, month) {
 // Вызов после загрузки данных
 document.addEventListener('DOMContentLoaded', async () => {
     await loadAllData();
-    document.addEventListener('DOMContentLoaded', async () => {
-        await loadAllData();
-        document.body.classList.add(getCurrentSeason());
-    
-       const currentHoliday = getCurrentHoliday();
-    const heroSection = document.getElementById('current-holiday');
+    document.body.classList.add(getCurrentSeason());
+    await loadAllData();
+    const currentHoliday = getCurrentHoliday();
     const titleElem = document.getElementById('holiday-title');
     const descElem = document.getElementById('holiday-description');
     const linkElem = document.getElementById('holiday-link');
     
     if (currentHoliday) {
+        // Если есть текущий праздник — показываем его
         titleElem.textContent = currentHoliday.title;
         descElem.textContent = currentHoliday.short_desc || currentHoliday.description.substring(0, 100) + '…';
         linkElem.href = `holiday.html?id=${currentHoliday.id}`;
         linkElem.textContent = 'Праздничные рецепты →';
     } else {
-        // Если нет активного праздника — показываем ссылку на все праздники
+        // Если нет — показываем общий блок со ссылкой на все праздники
         titleElem.textContent = 'Праздничные рецепты';
         descElem.textContent = 'Вдохновляйтесь рецептами к разным праздникам круглый год';
-        linkElem.href = 'holidays.html';
+        linkElem.href = 'holidays.html'; // создадим такую страницу
         linkElem.textContent = 'Все праздники →';
     }
     
