@@ -1,3 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сезонные рецепты | Главная</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">🍴 <span>Сезон</span>Рецепты</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Главная</a></li>
+                    <li><a href="recipes.html">Все рецепты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Блок текущего праздника -->
+        <section id="current-holiday" class="hero">
+            <h2 id="holiday-title"></h2>
+            <p id="holiday-description"></p>
+            <a id="holiday-link" href="#" class="btn">Праздничные рецепты &rarr;</a>
+        </section>
+<!-- Календарь праздников -->
+    <section class="calendar-section">
+        <h2 class="section-title">📅 Календарь праздников</h2>
+        <div class="calendar" id="calendar"></div>
+    </section>
+        <!-- Сезонные продукты -->
+        <section>
+            <h2 class="section-title">🍅 Сейчас в сезоне</h2>
+            <div id="products-grid" class="grid"></div>
+        </section>
+
+        <!-- Рецепты для вдохновения -->
+        <section>
+            <h2 class="section-title">📖 Рецепты недели</h2>
+            <div id="recipes-grid" class="grid"></div>
+        </section>
+    </main>
+
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
+
 <main class="container">
     <div class="main-layout">
         <!-- Левая колонка: календарь -->
