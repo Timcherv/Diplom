@@ -122,37 +122,3 @@ function getRandomRecipes(count = 4) {
 function formatDate(date) {
     return date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
 }
-
-<main class="container">
-    <div class="main-layout">
-        <!-- Левая колонка: календарь -->
-        <aside class="calendar-sidebar">
-            <section class="calendar-section">
-                <h2 class="section-title">📅 Календарь праздников</h2>
-                <div id="calendar" class="calendar"></div>
-            </section>
-        </aside>
-
-        <!-- Правая колонка: основной контент -->
-        <div class="main-content">
-            <!-- Блок текущего праздника (или приветственный) -->
-            <section id="current-holiday" class="hero">
-                <h2 id="holiday-title"></h2>
-                <p id="holiday-description"></p>
-                <a id="holiday-link" href="" class="btn">Праздничные рецепты →</a>
-            </section>
-
-            <!-- Сезонные продукты -->
-            <section>
-                <h2 class="section-title">🍅 Сейчас в сезоне</h2>
-                <div id="products-grid" class="grid"></div>
-            </section>
-
-            <!-- Рецепты недели -->
-            <section>
-                <h2 class="section-title">📖 Рецепты недели</h2>
-                <div id="recipes-grid" class="grid"></div>
-            </section>
-        </div>
-    </div>
-</main>
