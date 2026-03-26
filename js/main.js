@@ -3,48 +3,59 @@ let holidays = [];
 let products = [];
 let recipes = [];
 
-// Загрузка CSV через PapaParse
-async function loadCSV(url) {
+// Загрузка JSON-файлов
+async function loadJSON(url) {
     const response = await fetch(url);
-    const csvText = await response.text();
-    return new Promise((resolve) => {
-        Papa.parse(csvText, {
-            header: true,
-            skipEmptyLines: true,
-            complete: (result) => resolve(result.data)
-        });
-    });
+    if (!response.ok) {
+        throw new Error(`Ошибка загрузки ${url}: ${response.status}`);
+    }
+    return await response.json();
 }
 
-// Загрузка всех данных (ЗАМЕНИТЕ URL!)
+// Загрузка всех данных
 async function loadAllData() {
     try {
         const [h, p, r] = await Promise.all([
-            loadCSV('https://docs.google.com/spreadsheets/d/e/2PACX-1vT8ybbZU5WQhycMuMzzF50XDQnpG0L0cAE27rKfkaXTKGJYJVSyobaGXsnnEOM1Y8pEXwDXVQmYQ9uS/pub?gid=0&single=true&output=csv'),
-            loadCSV('https://docs.google.com/spreadsheets/d/e/2PACX-1vT8ybbZU5WQhycMuMzzF50XDQnpG0L0cAE27rKfkaXTKGJYJVSyobaGXsnnEOM1Y8pEXwDXVQmYQ9uS/pub?gid=1386507885&single=true&output=csv'),
-            loadCSV('https://docs.google.com/spreadsheets/d/e/2PACX-1vT8ybbZU5WQhycMuMzzF50XDQnpG0L0cAE27rKfkaXTKGJYJVSyobaGXsnnEOM1Y8pEXwDXVQmYQ9uS/pub?gid=528289495&single=true&output=csv')
+            loadJSON('data/holidays.json'),
+            loadJSON('data/products.json'),
+            loadJSON('data/recipes.json')
         ]);
         
-        holidays = h.map(item => ({
-            ...item,
-            date_start: item.date_start.split('.').map(Number),
-            date_end: item.date_end.split('.').map(Number)
+        holidays = h;
+        products = p;
+        recipes = r;
+        
+        // Преобразуем строки дат в массивы [день, месяц] для удобства
+        holidays = holidays.map(holiday => ({
+            ...holiday,
+            date_start: holiday.date_start.split('.').map(Number),
+            date_end: holiday.date_end.split('.').map(Number)
         }));
         
-        products = p.map(item => ({
-            ...item,
+        // Преобразуем сезоны (start/end уже числа)
+        products = products.map(product => ({
+            ...product,
             season: {
-                start: parseInt(item.season_start),
-                end: parseInt(item.season_end)
+                start: product.season_start,
+                end: product.season_end
             }
         }));
         
-        recipes = r;
+        console.log('Данные загружены из JSON-файлов', { holidays, products, recipes });
         return { holidays, products, recipes };
     } catch (error) {
         console.error('Ошибка загрузки данных:', error);
         return { holidays: [], products: [], recipes: [] };
     }
+}
+
+// Определение текущего сезона
+function getCurrentSeason() {
+    const month = new Date().getMonth() + 1;
+    if (month >= 3 && month <= 5) return 'spring';
+    if (month >= 6 && month <= 8) return 'summer';
+    if (month >= 9 && month <= 11) return 'autumn';
+    return 'winter';
 }
 
 // Определение текущего праздника
@@ -60,10 +71,12 @@ function getCurrentHoliday() {
         const startDate = new Date(today.getFullYear(), startMonth - 1, startDay);
         let endDate = new Date(today.getFullYear(), endMonth - 1, endDay);
         
+        // Если праздник переходит через год (например, Новый год)
         if (endDate < startDate) {
             endDate = new Date(today.getFullYear() + 1, endMonth - 1, endDay);
         }
         
+        // Для праздников, начинающихся в конце года, а заканчивающихся в начале следующего
         let currentDate = today;
         if (currentMonth < startMonth && startMonth > endMonth) {
             currentDate = new Date(today.getFullYear() + 1, currentMonth - 1, currentDay);
@@ -71,15 +84,6 @@ function getCurrentHoliday() {
         
         return currentDate >= startDate && currentDate <= endDate;
     });
-}
-
-// Определение текущего сезона
-function getCurrentSeason() {
-    const month = new Date().getMonth() + 1;
-    if (month >= 3 && month <= 5) return 'spring';
-    if (month >= 6 && month <= 8) return 'summer';
-    if (month >= 9 && month <= 11) return 'autumn';
-    return 'winter';
 }
 
 // Получение сезонных продуктов
@@ -116,30 +120,22 @@ function getRandomRecipes(count = 4) {
     return shuffled.slice(0, count);
 }
 
-
-
-// Форматирование даты
-function formatDate(date) {
-    return date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
-}
-// Проверяет, входит ли переданная дата в какой-либо праздник
+// Проверка, является ли дата праздничной
 function getHolidayForDate(date) {
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
-
+    
     return holidays.find(holiday => {
         const [startDay, startMonth] = holiday.date_start;
         const [endDay, endMonth] = holiday.date_end;
-
+        
         const startDate = new Date(year, startMonth - 1, startDay);
         let endDate = new Date(year, endMonth - 1, endDay);
-        
-        // Корректировка для праздников, переходящих через год
         if (endDate < startDate) {
             endDate = new Date(year + 1, endMonth - 1, endDay);
         }
-
+        
         const currentDate = new Date(year, month - 1, day);
         return currentDate >= startDate && currentDate <= endDate;
     });

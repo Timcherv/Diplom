@@ -1,0 +1,26 @@
+[
+    {
+      "id": "1",
+      "title": "Тыква",
+      "season_start": 8,
+      "season_end": 2,
+      "description": "Яркий осенний овощ, богатый витаминами. Идеальна для супов, каш и выпечки.",
+      "image_url": "https://images.unsplash.com/photo-1570586437263-ab629fccc818?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+      "id": "2",
+      "title": "Клубника",
+      "season_start": 5,
+      "season_end": 7,
+      "description": "Сладкая летняя ягода, хороша в десертах и свежем виде.",
+      "image_url": "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+      "id": "3",
+      "title": "Капуста",
+      "season_start": 7,
+      "season_end": 12,
+      "description": "Доступный и полезный овощ, основа многих блюд: щи, салаты, голубцы.",
+      "image_url": "https://images.unsplash.com/photo-1590845947504-2e1db37e6ed3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    }
+  ]
