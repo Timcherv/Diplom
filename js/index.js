@@ -1,12 +1,12 @@
+// Функция отрисовки календаря
 function renderCalendar(year, month) {
     const calendarEl = document.getElementById('calendar');
     if (!calendarEl) return;
 
-    // Первый день месяца
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
     const daysInMonth = lastDay.getDate();
-    const startingWeekday = firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1; // Пн = 0, Вс = 6
+    const startingWeekday = firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1;
 
     const monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
 
@@ -22,7 +22,6 @@ function renderCalendar(year, month) {
         <div class="calendar-days">
     `;
 
-    // Пустые ячейки до первого дня
     for (let i = 0; i < startingWeekday; i++) {
         html += '<div class="calendar-day empty"></div>';
     }
@@ -30,7 +29,6 @@ function renderCalendar(year, month) {
     const today = new Date();
     const isCurrentMonth = today.getFullYear() === year && today.getMonth() === month;
 
-    // Ячейки дней месяца
     for (let d = 1; d <= daysInMonth; d++) {
         const date = new Date(year, month, d);
         let classes = 'calendar-day';
@@ -43,25 +41,13 @@ function renderCalendar(year, month) {
         html += `<div class="${classes}">${d}</div>`;
     }
 
+    html += '</div><div class="calendar-legend">';
+    html += '<div class="legend-item"><div class="legend-color today"></div><span>Сегодня</span></div>';
+    html += '<div class="legend-item"><div class="legend-color holiday"></div><span>Праздник</span></div>';
     html += '</div>';
-
-    // Легенда
-    html += `
-        <div class="calendar-legend">
-            <div class="legend-item">
-                <div class="legend-color today"></div>
-                <span>Сегодня</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color holiday"></div>
-                <span>Праздник</span>
-            </div>
-        </div>
-    `;
 
     calendarEl.innerHTML = html;
 
-    // Обработчики для переключения месяцев
     document.getElementById('prevMonth')?.addEventListener('click', () => {
         let newYear = year;
         let newMonth = month - 1;
@@ -83,69 +69,17 @@ function renderCalendar(year, month) {
     });
 }
 
-// Вызов после загрузки данных
-document.addEventListener('DOMContentLoaded', async () => {
-    await loadAllData();
-
-    // Определяем и применяем сезон для body
-    const seasons = ['winter', 'spring', 'summer', 'autumn'];
-    // Удаляем все возможные сезонные классы, чтобы не наслаивались
-    document.body.classList.remove(...seasons);
-    const currentSeason = getCurrentSeason();
-    document.body.classList.add(currentSeason);
-
-   
-    const heroSection = document.getElementById('current-holiday');
-    const titleElem = document.getElementById('holiday-title');
-    const descElem = document.getElementById('holiday-description');
-    const linkElem = document.getElementById('holiday-link');
-
-    const currentHoliday = getCurrentHoliday();
-if (currentHoliday) {
-    titleElem.textContent = currentHoliday.title;
-    descElem.textContent = currentHoliday.short_desc;
-    linkElem.href = `holiday.html?id=${currentHoliday.id}`;
-    linkElem.textContent = 'Праздничные рецепты →';
-} else {
-    titleElem.textContent = 'Праздничные рецепты';
-    descElem.textContent = 'Вдохновляйтесь рецептами к разным праздникам круглый год';
-    linkElem.href = 'holidays.html';
-    linkElem.textContent = 'Все праздники →';
-}
-
- 
-
-    // Рецепты для вдохновения
-    const randomRecipes = getRandomRecipes(4);
-    const recipesGrid = document.getElementById('recipes-grid');
-    if (randomRecipes.length) {
-        recipesGrid.innerHTML = randomRecipes.map(r => `
-            <div class="card">
-                <img src="${r.image_url || 'https://via.placeholder.com/300x200?text=' + r.title}" alt="${r.title}">
-                <div class="card-content">
-                    <h3>${r.title}</h3>
-                    <p>${r.ingredients ? r.ingredients.substring(0, 60) + '…' : ''}</p>
-                    <a href="recipe.html?id=${r.id}" class="btn" style="padding: 0.5rem 1rem;">Подробнее</a>
-                </div>
-            </div>
-        `).join('');
-    } else {
-        recipesGrid.innerHTML = '<p>Нет рецептов для отображения</p>';
-    }
-
-    // Текущая дата для календаря
-    const today = new Date();
-    renderCalendar(today.getFullYear(), today.getMonth());
-});
-
-
+// Основная логика после загрузки страницы
 document.addEventListener('DOMContentLoaded', async () => {
     await loadAllData();
     document.body.classList.add(getCurrentSeason());
 
-    // ----- Блок "Сейчас в сезоне" -----
+    // --- Календарь ---
+    const today = new Date();
+    renderCalendar(today.getFullYear(), today.getMonth());
+
+    // --- Блок "Сейчас в сезоне" ---
     const seasonalProducts = getSeasonalProducts();
-    console.log('Сезонные продукты:', seasonalProducts); // для отладки
     const productsGrid = document.getElementById('products-grid');
     if (seasonalProducts.length) {
         productsGrid.innerHTML = seasonalProducts.slice(0, 4).map(product => `
@@ -162,9 +96,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         productsGrid.innerHTML = '<p>В этом сезоне нет продуктов. Загляните позже!</p>';
     }
 
-    // ----- Блок "Рецепты недели" (случайные) -----
+    // --- Блок "Случайные рецепты" ---
     const randomRecipes = getRandomRecipes(4);
-    console.log('Случайные рецепты:', randomRecipes); // для отладки
     const recipesGrid = document.getElementById('recipes-grid');
     if (randomRecipes.length) {
         recipesGrid.innerHTML = randomRecipes.map(recipe => `
@@ -175,6 +108,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <p>${recipe.ingredients ? recipe.ingredients.substring(0, 60) + '…' : ''}</p>
                     <div class="meta">
                         <span>⏱ ${recipe.cooking_time || '?'} мин</span>
+                        <span class="badge ${recipe.budget_level === 'бюджетный' ? 'budget' : (recipe.budget_level === 'средний' ? 'medium' : 'expensive')}">
+                            ${recipe.budget_level || 'средний'}
+                        </span>
                     </div>
                     <a href="recipe.html?id=${recipe.id}" class="btn">Подробнее</a>
                 </div>
