@@ -113,23 +113,7 @@ if (currentHoliday) {
     linkElem.textContent = 'Все праздники →';
 }
 
-    // Сезонные продукты (первые 4)
-    const seasonalProducts = getSeasonalProducts().slice(0, 4);
-    const productsGrid = document.getElementById('products-grid');
-    if (seasonalProducts.length) {
-        productsGrid.innerHTML = seasonalProducts.map(p => `
-            <div class="card">
-                <img src="${p.image_url || 'https://via.placeholder.com/300x200?text=' + p.title}" alt="${p.title}">
-                <div class="card-content">
-                    <h3>${p.title}</h3>
-                    <p>${p.description ? p.description.substring(0, 60) + '…' : ''}</p>
-                    <a href="product.html?id=${p.id}" class="btn" style="padding: 0.5rem 1rem;">Подробнее</a>
-                </div>
-            </div>
-        `).join('');
-    } else {
-        productsGrid.innerHTML = '<p>Нет данных о сезонных продуктах</p>';
-    }
+ 
 
     // Рецепты для вдохновения
     const randomRecipes = getRandomRecipes(4);
@@ -152,4 +136,49 @@ if (currentHoliday) {
     // Текущая дата для календаря
     const today = new Date();
     renderCalendar(today.getFullYear(), today.getMonth());
+});
+
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadAllData();
+    document.body.classList.add(getCurrentSeason());
+
+   // Сезонные продукты (показываем не более 4)
+const seasonalProducts = getSeasonalProducts().slice(0, 4);
+const productsGrid = document.getElementById('products-grid');
+
+if (seasonalProducts.length) {
+    productsGrid.innerHTML = seasonalProducts.map(product => `
+        <div class="card">
+            <img src="${product.image_url || 'https://via.placeholder.com/300x200?text=' + encodeURIComponent(product.title)}" alt="${product.title}">
+            <div class="card-content">
+                <h3>${product.title}</h3>
+                <p>${product.description ? product.description.substring(0, 80) + '…' : ''}</p>
+                <a href="product.html?id=${product.id}" class="btn">Подробнее</a>
+            </div>
+        </div>
+    `).join('');
+} else {
+    productsGrid.innerHTML = '<p>В этом сезоне нет продуктов. Загляните позже!</p>';
+}
+
+    // 2. Случайные рецепты (4 штуки)
+    const randomRecipes = getRandomRecipes(4);
+    const recipesGrid = document.getElementById('recipes-grid');
+    if (randomRecipes.length) {
+        recipesGrid.innerHTML = randomRecipes.map(r => `
+            <div class="card">
+                <img src="${r.image_url || 'https://via.placeholder.com/300x200?text=' + r.title}" alt="${r.title}">
+                <div class="card-content">
+                    <h3>${r.title}</h3>
+                    <p>${r.ingredients ? r.ingredients.substring(0, 60) + '…' : ''}</p>
+                    <div class="meta">
+                        </span>
+                    </div>
+                    <a href="recipe.html?id=${r.id}" class="btn">Подробнее</a>
+                </div>
+            </div>
+        `).join('');
+    } else {
+        recipesGrid.innerHTML = '<p>Нет рецептов для отображения</p>';
+    }
 });

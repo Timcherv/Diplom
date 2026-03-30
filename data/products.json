@@ -1,26 +1,50 @@
 [
-    {
-      "id": "1",
-      "title": "Тыква",
-      "season_start": 8,
-      "season_end": 2,
-      "description": "Яркий осенний овощ, богатый витаминами. Идеальна для супов, каш и выпечки.",
-      "image_url": "https://images.unsplash.com/photo-1570586437263-ab629fccc818?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-    },
-    {
-      "id": "2",
-      "title": "Клубника",
-      "season_start": 5,
-      "season_end": 7,
-      "description": "Сладкая летняя ягода, хороша в десертах и свежем виде.",
-      "image_url": "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-    },
-    {
-      "id": "3",
-      "title": "Капуста",
-      "season_start": 7,
-      "season_end": 12,
-      "description": "Доступный и полезный овощ, основа многих блюд: щи, салаты, голубцы.",
-      "image_url": "https://images.unsplash.com/photo-1590845947504-2e1db37e6ed3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-    }
-  ]
+  {
+    "id": "1",
+    "title": "Клубника",
+    "season_start": 5,
+    "season_end": 7,
+    "description": "Сладкая ароматная ягода, богатая витамином C. Идеальна для десертов, варенья и свежего употребления.",
+    "image_url": "https://images.pexels.com/photos/1030977/strawberries-fruit-red-berry-1030977.jpg"
+  },
+  {
+    "id": "2",
+    "title": "Черешня",
+    "season_start": 5,
+    "season_end": 6,
+    "description": "Ранняя летняя ягода с сочной мякотью. Хороша в компотах, пирогах и просто так.",
+    "image_url": "https://images.pexels.com/photos/109274/cherries-sweet-cherries-fruit-cherry-109274.jpg"
+  },
+  {
+    "id": "3",
+    "title": "Кабачок",
+    "season_start": 6,
+    "season_end": 8,
+    "description": "Низкокалорийный овощ, богатый клетчаткой. Используется для рагу, оладий, запекания.",
+    "image_url": "https://images.pexels.com/photos/54623/zucchini-sliced-vegetable-fresh-54623.jpg"
+  },
+  {
+    "id": "4",
+    "title": "Огурец",
+    "season_start": 6,
+    "season_end": 8,
+    "description": "Хрустящий овощ, основа летних салатов. Содержит много воды и полезных микроэлементов.",
+    "image_url": "https://images.pexels.com/photos/229882/cucumbers-fresh-organic-vegetables-229882.jpg"
+  },
+  {
+    "id": "5",
+    "title": "Помидор",
+    "season_start": 7,
+    "season_end": 9,
+    "description": "Сочный томат, богатый ликопином. Подходит для салатов, соусов, консервирования.",
+    "image_url": "https://images.pexels.com/photos/1327838/tomatoes-vegetables-fruit-ripe-1327838.jpg"
+  },
+  {
+    "id": "6",
+    "title": "Малина",
+    "season_start": 6,
+    "season_end": 8,
+    "description": "Душистая ягода, известная своими жаропонижающими свойствами. Варенье, компоты, выпечка.",
+    "image_url": "https://images.pexels.com/photos/89139/raspberries-fruit-berries-ripe-89139.jpg"
+  }
+]

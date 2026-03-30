@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Все праздники | Сезонные рецепты</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">🍴 <span>Сезон</span>Рецепты</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="recipes.html">Все рецепты</a></li>
+                    <li><a href="holidays.html" class="active">Праздники</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 class="section-title">Все праздники</h1>
+        <div id="holidays-grid" class="grid"></div>
+    </main>
+
+
+   
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadAllData();
+            const grid = document.getElementById('holidays-grid');
+
+            if (holidays.length > 0) {
+                grid.innerHTML = holidays.map(holiday => `
+                    <div class="card">
+                        <img src="${holiday.image_url || 'https://via.placeholder.com/300x200?text=' + encodeURIComponent(holiday.title)}" 
+                             alt="${holiday.title}">
+                        <div class="card-content">
+                            <h3>${holiday.title}</h3>
+                            <p>${holiday.short_desc || holiday.description.substring(0, 60) + '…'}</p>
+                            <div class="meta">
+                                <span>📅 ${holiday.date_start.join('.')} — ${holiday.date_end.join('.')}</span>
+                            </div>
+                            <a href="holiday.html?id=${holiday.id}" class="btn">Рецепты →</a>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                grid.innerHTML = '<p>Праздники не найдены</p>';
+            }
+        });
+    </script>
+</body>
+</html>
