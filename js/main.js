@@ -1,16 +1,13 @@
-// Глобальные переменные
 let holidays = [];
 let products = [];
 let recipes = [];
 
-// Загрузка JSON
 async function loadJSON(url) {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`Ошибка ${url}: ${response.status}`);
-    return await response.json();
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}: ${url}`);
+    return await res.json();
 }
 
-// Загрузка всех данных
 async function loadAllData() {
     try {
         const [h, p, r] = await Promise.all([
@@ -18,100 +15,81 @@ async function loadAllData() {
             loadJSON('data/products.json'),
             loadJSON('data/recipes.json')
         ]);
-        holidays = h.map(holiday => ({
-            ...holiday,
-            date_start: holiday.date_start.split('.').map(Number),
-            date_end: holiday.date_end.split('.').map(Number)
+        holidays = h.map(hol => ({
+            ...hol,
+            date_start: hol.date_start.split('.').map(Number),
+            date_end: hol.date_end.split('.').map(Number)
         }));
         products = p;
         recipes = r;
         console.log('Данные загружены', { holidays, products, recipes });
-    } catch (error) {
-        console.error('Ошибка загрузки:', error);
+    } catch (err) {
+        console.error('Ошибка загрузки данных:', err);
     }
 }
 
-// Определение текущего сезона (для смены темы)
 function getCurrentSeason() {
-    const month = new Date().getMonth() + 1;
-    if (month >= 3 && month <= 5) return 'spring';
-    if (month >= 6 && month <= 8) return 'summer';
-    if (month >= 9 && month <= 11) return 'autumn';
+    const m = new Date().getMonth() + 1;
+    if (m >= 3 && m <= 5) return 'spring';
+    if (m >= 6 && m <= 8) return 'summer';
+    if (m >= 9 && m <= 11) return 'autumn';
     return 'winter';
 }
 
-// Определение текущего праздника (рабочая версия)
 function getCurrentHoliday() {
     const today = new Date();
-    const currentDay = today.getDate();
-    const currentMonth = today.getMonth() + 1;
-    
-    return holidays.find(holiday => {
-        const [startDay, startMonth] = holiday.date_start;
-        const [endDay, endMonth] = holiday.date_end;
-        
-        const startDate = new Date(today.getFullYear(), startMonth - 1, startDay);
-        let endDate = new Date(today.getFullYear(), endMonth - 1, endDay);
-        if (endDate < startDate) {
-            endDate = new Date(today.getFullYear() + 1, endMonth - 1, endDay);
-        }
-        let currentDate = today;
-        if (currentMonth < startMonth && startMonth > endMonth) {
-            currentDate = new Date(today.getFullYear() + 1, currentMonth - 1, currentDay);
-        }
-        return currentDate >= startDate && currentDate <= endDate;
+    const curDay = today.getDate();
+    const curMonth = today.getMonth() + 1;
+    return holidays.find(h => {
+        const [sD, sM] = h.date_start;
+        const [eD, eM] = h.date_end;
+        const start = new Date(today.getFullYear(), sM-1, sD);
+        let end = new Date(today.getFullYear(), eM-1, eD);
+        if (end < start) end = new Date(today.getFullYear()+1, eM-1, eD);
+        let cur = today;
+        if (curMonth < sM && sM > eM) cur = new Date(today.getFullYear()+1, curMonth-1, curDay);
+        return cur >= start && cur <= end;
     });
 }
 
-// Проверка, является ли дата праздничной (для календаря)
 function getHolidayForDate(date) {
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
-    return holidays.find(holiday => {
-        const [startDay, startMonth] = holiday.date_start;
-        const [endDay, endMonth] = holiday.date_end;
-        const startDate = new Date(year, startMonth - 1, startDay);
-        let endDate = new Date(year, endMonth - 1, endDay);
-        if (endDate < startDate) {
-            endDate = new Date(year + 1, endMonth - 1, endDay);
-        }
-        const currentDate = new Date(year, month - 1, day);
-        return currentDate >= startDate && currentDate <= endDate;
+    return holidays.find(h => {
+        const [sD, sM] = h.date_start;
+        const [eD, eM] = h.date_end;
+        const start = new Date(year, sM-1, sD);
+        let end = new Date(year, eM-1, eD);
+        if (end < start) end = new Date(year+1, eM-1, eD);
+        const cur = new Date(year, month-1, day);
+        return cur >= start && cur <= end;
     });
 }
 
-// Получение сезонных продуктов
 function getSeasonalProducts() {
-    const currentMonth = new Date().getMonth() + 1;
-    return products.filter(product => {
-        const start = product.season_start;
-        const end = product.season_end;
-        if (start <= end) {
-            return currentMonth >= start && currentMonth <= end;
-        } else {
-            return currentMonth >= start || currentMonth <= end;
-        }
+    const curMonth = new Date().getMonth() + 1;
+    return products.filter(p => {
+        const s = p.season_start;
+        const e = p.season_end;
+        if (s <= e) return curMonth >= s && curMonth <= e;
+        else return curMonth >= s || curMonth <= e;
     });
 }
 
-// Рецепты для праздника
-function getRecipesForHoliday(holidayId) {
-    return recipes.filter(r => r.holiday_id == holidayId);
+function getRecipesForHoliday(id) {
+    return recipes.filter(r => r.holiday_id == id);
 }
 
-// Рецепты для продукта
-function getRecipesForProduct(productId) {
-    return recipes.filter(r => r.product_id == productId);
+function getRecipesForProduct(id) {
+    return recipes.filter(r => r.product_id == id);
 }
 
-// Случайные рецепты для главной (из сезонных или праздничных)
 function getRandomRecipes(count = 4) {
-    const seasonalProductIds = getSeasonalProducts().map(p => p.id);
-    const seasonalRecipes = recipes.filter(r => r.product_id && seasonalProductIds.includes(r.product_id));
-    const currentHoliday = getCurrentHoliday();
-    const holidayRecipes = currentHoliday ? getRecipesForHoliday(currentHoliday.id) : [];
+    const seasonalIds = getSeasonalProducts().map(p => p.id);
+    const seasonalRecipes = recipes.filter(r => r.product_id && seasonalIds.includes(r.product_id));
+    const curHoliday = getCurrentHoliday();
+    const holidayRecipes = curHoliday ? getRecipesForHoliday(curHoliday.id) : [];
     const all = [...new Map([...seasonalRecipes, ...holidayRecipes].map(r => [r.id, r])).values()];
-    const shuffled = all.sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, count);
+    return all.sort(() => 0.5 - Math.random()).slice(0, count);
 }

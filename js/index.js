@@ -1,142 +1,91 @@
-// Функция отрисовки календаря
 function renderCalendar(year, month) {
-    const calendarEl = document.getElementById('calendar');
-    if (!calendarEl) return;
-
+    const container = document.getElementById('calendar');
+    if (!container) return;
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
     const daysInMonth = lastDay.getDate();
-    const startingWeekday = firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1;
-
-    const monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
-
-    let html = `
-        <div class="calendar-header">
-            <button id="prevMonth">&lt;</button>
-            <span>${monthNames[month]} ${year}</span>
-            <button id="nextMonth">&gt;</button>
-        </div>
-        <div class="calendar-weekdays">
-            <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Вс</div>
-        </div>
-        <div class="calendar-days">
-    `;
-
-    for (let i = 0; i < startingWeekday; i++) {
-        html += '<div class="calendar-day empty"></div>';
-    }
-
+    const startWeekday = firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1;
+    const monthNames = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+    let html = `<div class="calendar-header"><button id="prevMonth">&lt;</button><span>${monthNames[month]} ${year}</span><button id="nextMonth">&gt;</button></div>
+                <div class="calendar-weekdays"><div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Вс</div></div>
+                <div class="calendar-days">`;
+    for (let i = 0; i < startWeekday; i++) html += '<div class="calendar-day empty"></div>';
     const today = new Date();
-    const isCurrentMonth = today.getFullYear() === year && today.getMonth() === month;
-
+    const isCurMonth = today.getFullYear() === year && today.getMonth() === month;
     for (let d = 1; d <= daysInMonth; d++) {
         const date = new Date(year, month, d);
-        let classes = 'calendar-day';
-        if (isCurrentMonth && d === today.getDate()) {
-            classes += ' today';
-        }
-        if (getHolidayForDate(date)) {
-            classes += ' holiday';
-        }
-        html += `<div class="${classes}">${d}</div>`;
+        let cls = 'calendar-day';
+        if (isCurMonth && d === today.getDate()) cls += ' today';
+        if (getHolidayForDate(date)) cls += ' holiday';
+        html += `<div class="${cls}">${d}</div>`;
     }
-
-    html += '</div><div class="calendar-legend">';
-    html += '<div class="legend-item"><div class="legend-color today"></div><span>Сегодня</span></div>';
-    html += '<div class="legend-item"><div class="legend-color holiday"></div><span>Праздник</span></div>';
-    html += '</div>';
-
-    calendarEl.innerHTML = html;
-
-    document.getElementById('prevMonth')?.addEventListener('click', () => {
-        let newYear = year;
-        let newMonth = month - 1;
-        if (newMonth < 0) {
-            newMonth = 11;
-            newYear--;
-        }
-        renderCalendar(newYear, newMonth);
-    });
-
-    document.getElementById('nextMonth')?.addEventListener('click', () => {
-        let newYear = year;
-        let newMonth = month + 1;
-        if (newMonth > 11) {
-            newMonth = 0;
-            newYear++;
-        }
-        renderCalendar(newYear, newMonth);
-    });
+    html += '</div><div class="calendar-legend"><div class="legend-item"><div class="legend-color today"></div><span>Сегодня</span></div><div class="legend-item"><div class="legend-color holiday"></div><span>Праздник</span></div></div>';
+    container.innerHTML = html;
+    document.getElementById('prevMonth')?.addEventListener('click', () => renderCalendar(year, month-1 < 0 ? year-1 : year, month-1 < 0 ? 11 : month-1));
+    document.getElementById('nextMonth')?.addEventListener('click', () => renderCalendar(year, month+1 > 11 ? year+1 : year, month+1 > 11 ? 0 : month+1));
 }
 
-// Основная логика после загрузки DOM
 document.addEventListener('DOMContentLoaded', async () => {
     await loadAllData();
     document.body.classList.add(getCurrentSeason());
+    const today = new Date();
+    renderCalendar(today.getFullYear(), today.getMonth());
 
-    // --- Календарь ---
-    const todayDate = new Date();
-    renderCalendar(todayDate.getFullYear(), todayDate.getMonth());
-
-    // --- Текущий праздник (блок hero) ---
-    const currentHoliday = getCurrentHoliday();
-    const heroSection = document.getElementById('current-holiday');
-    const holidayTitle = document.getElementById('holiday-title');
-    const holidayDesc = document.getElementById('holiday-description');
-    const holidayLink = document.getElementById('holiday-link');
-
-    if (currentHoliday) {
-        holidayTitle.textContent = currentHoliday.title;
-        holidayDesc.textContent = currentHoliday.short_desc || (currentHoliday.description ? currentHoliday.description.substring(0, 100) + '…' : '');
-        holidayLink.href = `holiday.html?id=${currentHoliday.id}`;
-        holidayLink.textContent = 'Праздничные рецепты →';
+    // Текущий праздник / ссылка
+    const curHol = getCurrentHoliday();
+    const hero = document.getElementById('current-holiday');
+    const hTitle = document.getElementById('holiday-title');
+    const hDesc = document.getElementById('holiday-description');
+    const hLink = document.getElementById('holiday-link');
+    if (curHol) {
+        hTitle.textContent = curHol.title;
+        hDesc.textContent = curHol.short_desc || (curHol.description?.substring(0,100) || '');
+        hLink.href = `holiday.html?id=${curHol.id}`;
+        hLink.textContent = 'Праздничные рецепты →';
     } else {
-        // Если нет активного праздника, показываем приглашение посмотреть все праздники
-        holidayTitle.textContent = 'Праздничные рецепты';
-        holidayDesc.textContent = 'Вдохновляйтесь рецептами к разным праздникам круглый год';
-        holidayLink.href = 'holidays.html';
-        holidayLink.textContent = 'Все праздники →';
+        hTitle.textContent = 'Праздничные рецепты';
+        hDesc.textContent = 'Вдохновляйтесь рецептами к разным праздникам круглый год';
+        hLink.href = 'holidays.html';
+        hLink.textContent = 'Все праздники →';
     }
 
-    // --- Сезонные продукты ---
-    const seasonalProducts = getSeasonalProducts();
-    const productsGrid = document.getElementById('products-grid');
-    if (seasonalProducts.length) {
-        productsGrid.innerHTML = seasonalProducts.slice(0, 4).map(product => `
+    // Сезонные продукты
+    const seasonal = getSeasonalProducts();
+    const prodGrid = document.getElementById('products-grid');
+    if (seasonal.length) {
+        prodGrid.innerHTML = seasonal.slice(0,4).map(p => `
             <div class="card">
-                <img src="${product.image_url || 'https://via.placeholder.com/300x200?text=' + encodeURIComponent(product.title)}" alt="${product.title}">
+                <img src="${p.image_url || 'https://via.placeholder.com/300x200?text='+encodeURIComponent(p.title)}" alt="${p.title}">
                 <div class="card-content">
-                    <h3>${product.title}</h3>
-                    <p>${product.description ? product.description.substring(0, 80) + '…' : ''}</p>
-                    <a href="product.html?id=${product.id}" class="btn">Подробнее</a>
+                    <h3>${p.title}</h3>
+                    <p>${p.description?.substring(0,80) || ''}</p>
+                    <a href="product.html?id=${p.id}" class="btn">Подробнее</a>
                 </div>
             </div>
         `).join('');
     } else {
-        productsGrid.innerHTML = '<p>В этом сезоне нет продуктов. Загляните позже!</p>';
+        prodGrid.innerHTML = '<p>В этом сезоне нет продуктов. Загляните позже!</p>';
     }
 
-    // --- Случайные рецепты ---
-    const randomRecipes = getRandomRecipes(4);
-    const recipesGrid = document.getElementById('recipes-grid');
-    if (randomRecipes.length) {
-        recipesGrid.innerHTML = randomRecipes.map(recipe => `
+    // Случайные рецепты
+    const randRec = getRandomRecipes(4);
+    const recGrid = document.getElementById('recipes-grid');
+    if (randRec.length) {
+        recGrid.innerHTML = randRec.map(r => `
             <div class="card">
-                <img src="${recipe.image_url || 'https://via.placeholder.com/300x200?text=' + encodeURIComponent(recipe.title)}" alt="${recipe.title}">
+                <img src="${r.image_url || 'https://via.placeholder.com/300x200?text='+encodeURIComponent(r.title)}" alt="${r.title}">
                 <div class="card-content">
-                    <h3>${recipe.title}</h3>
-                    <p>${recipe.ingredients ? recipe.ingredients.substring(0, 60) + '…' : ''}</p>
+                    <h3>${r.title}</h3>
+                    <p>${r.ingredients?.substring(0,60) || ''}</p>
                     <div class="meta">
-                        <span>⏱ ${recipe.cooking_time || '?'} мин</span>
-                        <span class="badge ${recipe.budget_level === 'бюджетный' ? 'budget' : (recipe.budget_level === 'средний' ? 'medium' : 'expensive')}">
-                            ${recipe.budget_level || 'средний'}
-                        </span>
+                        <span>⏱ ${r.cooking_time || '?'} мин</span>
+                        <span class="badge ${r.budget_level === 'бюджетный' ? 'budget' : (r.budget_level === 'средний' ? 'medium' : 'expensive')}">${r.budget_level || 'средний'}</span>
                     </div>
-                    <a href="recipe.html?id=${recipe.id}" class="btn">Подробнее</a>
+                    <a href="recipe.html?id=${r.id}" class="btn">Подробнее</a>
                 </div>
             </div>
         `).join('');
     } else {
-        recipesGrid.innerHTML = '<p>Нет рецептов для отображения</p>';
+        recGrid.innerHTML = '<p>Нет рецептов для отображения</p>';
     }
 });
