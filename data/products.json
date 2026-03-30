@@ -47,4 +47,12 @@
     "description": "Душистая ягода, известная своими жаропонижающими свойствами. Варенье, компоты, выпечка.",
     "image_url": "https://images.pexels.com/photos/89139/raspberries-fruit-berries-ripe-89139.jpg"
   }
+  {
+    "id": "7",
+    "title": "Картофель",
+    "season_start": 3,
+    "season_end": 4,
+    "description": "Картошка, используется во многих рецептах супов и горячих блюд",
+    "image_url": "https://t3.ftcdn.net/jpg/06/41/44/72/360_F_641447288_fdv334smXasb6Wc8m0RdeZpeQNMjkaDs.jpg"
+  }
 ]
