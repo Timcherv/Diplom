@@ -69,16 +69,36 @@ function renderCalendar(year, month) {
     });
 }
 
-// Основная логика после загрузки страницы
+// Основная логика после загрузки DOM
 document.addEventListener('DOMContentLoaded', async () => {
     await loadAllData();
     document.body.classList.add(getCurrentSeason());
 
     // --- Календарь ---
-    const today = new Date();
-    renderCalendar(today.getFullYear(), today.getMonth());
+    const todayDate = new Date();
+    renderCalendar(todayDate.getFullYear(), todayDate.getMonth());
 
-    // --- Блок "Сейчас в сезоне" ---
+    // --- Текущий праздник (блок hero) ---
+    const currentHoliday = getCurrentHoliday();
+    const heroSection = document.getElementById('current-holiday');
+    const holidayTitle = document.getElementById('holiday-title');
+    const holidayDesc = document.getElementById('holiday-description');
+    const holidayLink = document.getElementById('holiday-link');
+
+    if (currentHoliday) {
+        holidayTitle.textContent = currentHoliday.title;
+        holidayDesc.textContent = currentHoliday.short_desc || (currentHoliday.description ? currentHoliday.description.substring(0, 100) + '…' : '');
+        holidayLink.href = `holiday.html?id=${currentHoliday.id}`;
+        holidayLink.textContent = 'Праздничные рецепты →';
+    } else {
+        // Если нет активного праздника, показываем приглашение посмотреть все праздники
+        holidayTitle.textContent = 'Праздничные рецепты';
+        holidayDesc.textContent = 'Вдохновляйтесь рецептами к разным праздникам круглый год';
+        holidayLink.href = 'holidays.html';
+        holidayLink.textContent = 'Все праздники →';
+    }
+
+    // --- Сезонные продукты ---
     const seasonalProducts = getSeasonalProducts();
     const productsGrid = document.getElementById('products-grid');
     if (seasonalProducts.length) {
@@ -96,7 +116,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         productsGrid.innerHTML = '<p>В этом сезоне нет продуктов. Загляните позже!</p>';
     }
 
-    // --- Блок "Случайные рецепты" ---
+    // --- Случайные рецепты ---
     const randomRecipes = getRandomRecipes(4);
     const recipesGrid = document.getElementById('recipes-grid');
     if (randomRecipes.length) {
