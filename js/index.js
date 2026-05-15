@@ -1,28 +1,75 @@
 function renderCalendar(year, month) {
     const container = document.getElementById('calendar');
     if (!container) return;
-    const firstDay = new Date(year, month, 1);
-    const lastDay = new Date(year, month + 1, 0);
+    
+    // Корректно вычисляем месяц: month может быть <0 или >11 (навигация)
+    let fixedYear = year;
+    let fixedMonth = month;
+    if (fixedMonth < 0) {
+        fixedMonth = 11;
+        fixedYear -= 1;
+    } else if (fixedMonth > 11) {
+        fixedMonth = 0;
+        fixedYear += 1;
+    }
+
+    const firstDay = new Date(fixedYear, fixedMonth, 1);
+    const lastDay = new Date(fixedYear, fixedMonth + 1, 0);
     const daysInMonth = lastDay.getDate();
-    const startWeekday = firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1;
+    
+    // Для России неделя начинается с ПН, getDay: 0 - ВСК, 1 - ПН ...
+    // startWeekday: 0 (ПН), 6 (ВС)
+    let startWeekday = firstDay.getDay();
+    if (startWeekday === 0) startWeekday = 6;
+    else startWeekday = startWeekday - 1;
+
     const monthNames = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
-    let html = `<div class="calendar-header"><button id="prevMonth">&lt;</button><span>${monthNames[month]} ${year}</span><button id="nextMonth">&gt;</button></div>
-                <div class="calendar-weekdays"><div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Вс</div></div>
-                <div class="calendar-days">`;
+    let html = `
+        <div class="calendar-header">
+            <button id="prevMonth">&lt;</button>
+            <span>${monthNames[fixedMonth]} ${fixedYear}</span>
+            <button id="nextMonth">&gt;</button>
+        </div>
+        <div class="calendar-weekdays">
+            <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Вс</div>
+        </div>
+        <div class="calendar-days">
+    `;
+
+    // Добавляем пустые ячейки в начале, чтобы месяц начинался с нужного дня недели
     for (let i = 0; i < startWeekday; i++) html += '<div class="calendar-day empty"></div>';
+
     const today = new Date();
-    const isCurMonth = today.getFullYear() === year && today.getMonth() === month;
+    const isCurMonth = today.getFullYear() === fixedYear && today.getMonth() === fixedMonth;
+
     for (let d = 1; d <= daysInMonth; d++) {
-        const date = new Date(year, month, d);
+        const date = new Date(fixedYear, fixedMonth, d);
         let cls = 'calendar-day';
         if (isCurMonth && d === today.getDate()) cls += ' today';
-        if (getHolidayForDate(date)) cls += ' holiday';
+        if (typeof getHolidayForDate === 'function' && getHolidayForDate(date)) cls += ' holiday';
         html += `<div class="${cls}">${d}</div>`;
     }
-    html += '</div><div class="calendar-legend"><div class="legend-item"><div class="legend-color today"></div><span>Сегодня</span></div><div class="legend-item"><div class="legend-color holiday"></div><span>Праздник</span></div></div>';
+    html += `</div>
+        <div class="calendar-legend">
+            <div class="legend-item"><div class="legend-color today"></div><span>Сегодня</span></div>
+            <div class="legend-item"><div class="legend-color holiday"></div><span>Праздник</span></div>
+        </div>
+    `;
+
     container.innerHTML = html;
-    document.getElementById('prevMonth')?.addEventListener('click', () => renderCalendar(year, month-1 < 0 ? year-1 : year, month-1 < 0 ? 11 : month-1));
-    document.getElementById('nextMonth')?.addEventListener('click', () => renderCalendar(year, month+1 > 11 ? year+1 : year, month+1 > 11 ? 0 : month+1));
+
+    document.getElementById('prevMonth')?.addEventListener('click', () =>
+        renderCalendar(
+            fixedMonth-1 < 0 ? fixedYear-1 : fixedYear,
+            fixedMonth-1 < 0 ? 11 : fixedMonth-1
+        )
+    );
+    document.getElementById('nextMonth')?.addEventListener('click', () =>
+        renderCalendar(
+            fixedMonth+1 > 11 ? fixedYear+1 : fixedYear,
+            fixedMonth+1 > 11 ? 0 : fixedMonth+1
+        )
+    );
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
