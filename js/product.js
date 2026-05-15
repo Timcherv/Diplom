@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
-    const product = products.find(p => p.id == productId);
+    // Найдем продукт по id (id из products.js)
+    const product = products.find(p => String(p.id) === String(productId));
     if (!product) {
         document.getElementById('product-content').innerHTML = '<p>Продукт не найден</p>';
         return;
@@ -24,10 +25,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Индикатор сезонности
     const months = ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'];
     const currentMonth = new Date().getMonth() + 1;
-    const { start, end } = product.season;
+    const start = product.season_start || (product.season && product.season.start);
+    const end = product.season_end || (product.season && product.season.end);
     let seasonHtml = '<div class="season-bars">';
     for (let i = 1; i <= 12; i++) {
-        const inSeason = (start <= end) ? (i >= start && i <= end) : (i >= start || i <= end);
+        let inSeason = false;
+        if (start && end) {
+            inSeason = (start <= end)
+                ? (i >= start && i <= end)
+                : (i >= start || i <= end);
+        }
         const activeClass = inSeason ? 'active' : '';
         const isCurrent = (i === currentMonth) ? ' (сейчас)' : '';
         seasonHtml += `<div class="season-bar ${activeClass}" title="${months[i-1]}${isCurrent}">${months[i-1]}</div>`;
@@ -35,13 +42,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     seasonHtml += '</div>';
     document.getElementById('product-season').innerHTML = seasonHtml;
 
-    // Рецепты с этим продуктом
-    const productRecipes = getRecipesForProduct(productId);
+    // Рецепты с этим продуктом (ищем в recipes по product_id который совпадает с id продукта)
+    const productRecipes = recipes.filter(r => String(r.product_id) === String(productId));
     const recipesGrid = document.getElementById('recipes-grid');
     if (productRecipes.length) {
         recipesGrid.innerHTML = productRecipes.map(r => `
             <div class="card">
-                <img src="${r.image_url || 'https://via.placeholder.com/300x200?text=' + r.title}" alt="${r.title}">
+                <img src="${r.image_url || 'https://via.placeholder.com/300x200?text=' + encodeURIComponent(r.title)}" alt="${r.title}">
                 <div class="card-content">
                     <h3>${r.title}</h3>
                     <p>${r.ingredients ? r.ingredients.substring(0, 80) + '…' : ''}</p>
