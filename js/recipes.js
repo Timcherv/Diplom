@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             <div style="margin-bottom:7px;"><strong>Ингредиенты:</strong></div>
             <div style="margin-bottom:15px;font-size:1.08em;">${recipe.ingredients ? recipe.ingredients.replace(/\n/g, "<br>") : "Нет информации"}</div>
             <div style="margin-bottom:7px;"><strong>Инструкция приготовления:</strong></div>
-            <div style="font-size:1.11em;">${recipe.instruction ? recipe.instruction.replace(/\n/g, "<br>") : "Нет инструкции"}</div>
+            <div style="font-size:1.11em;">${recipe.instructions ? recipe.instructions.replace(/\n/g, "<br>") : "Нет инструкции"}</div>
         `;
         recipeModal.style.display = 'flex';
         document.body.style.overflow = "hidden";
