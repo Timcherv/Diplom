@@ -12,32 +12,41 @@
             border: 2px dashed #d0ba85;
             border-radius: 12px;
             margin: 24px 0 24px 0;
-            min-width: 1400px;
-            max-width: 2200px;
+            min-width: 140px;
+            max-width: 220px;
             padding: 36px 16px;
             text-align: center;
             font-size: 1.18rem;
             color: #b89e52;
             font-weight: bold;
             box-shadow: 0 2px 12px rgba(193, 162, 56, 0.07);
-            /* Для растяжения рекламных блоков вниз */
-            align-self: stretch;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            height: 100%;
+            /* Новый подход — убрать фиксированную высоту, расти по высоте контейнера */
+            height: auto;
         }
         .page-banner-layout {
             display: flex;
             justify-content: center;
-            align-items: stretch; /* тянет рекламные блоки вниз */
+            align-items: stretch;
             gap: 22px;
             width: 100%;
             min-height: 100vh;
             box-sizing: border-box;
+            /* Новый стиль — растягивать контейнер и его детей вниз */
+            height: 100vh;
+        }
+        /* Гарантируем что <main> и баннеры одинаковой высоты */
+        .page-banner-layout > .ad-banner,
+        .page-banner-layout > main.container {
+            flex: 1 1 0;
+            /* Обеспечивает одинаковую высоту для всего ряда */
+            display: flex;
+            flex-direction: column;
         }
         main.container {
-            flex: 1 1 auto;
+            flex: 2 1 0;
             max-width: 1020px;
             display: flex;
         }
@@ -48,6 +57,7 @@
             }
             .page-banner-layout {
                 gap: 0;
+                height: auto;
             }
         }
     </style>
