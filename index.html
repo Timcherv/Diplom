@@ -20,15 +20,26 @@
             color: #b89e52;
             font-weight: bold;
             box-shadow: 0 2px 12px rgba(193, 162, 56, 0.07);
-            position: sticky;
-            top: 32px;
+            /* Для растяжения рекламных блоков вниз */
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 100%;
         }
         .page-banner-layout {
             display: flex;
             justify-content: center;
-            align-items: flex-start;
+            align-items: stretch; /* тянет рекламные блоки вниз */
             gap: 22px;
             width: 100%;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        main.container {
+            flex: 1 1 auto;
+            max-width: 1020px;
+            display: flex;
         }
         /* Адаптация для мобильных — скрыть боковые баннеры */
         @media (max-width: 1100px) {
@@ -59,7 +70,7 @@
         <!-- Левая рекламная позиция -->
         <div class="ad-banner">Место для вашей рекламы</div>
 
-        <main class="container" style="flex:1 1 auto;max-width:1020px;">
+        <main class="container">
             <div class="main-layout">
                 <!-- Левая колонка: календарь -->
                 <aside class="calendar-sidebar">
