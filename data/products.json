@@ -106,32 +106,32 @@
   {
     "id": "14",
     "title": "Творог",
-    "season_start": 1,
-    "season_end": 12,
+    "season_start": null,
+    "season_end": null,
     "description": "Молочный продукт, доступен круглый год. Основной ингредиент сырников и выпечки.",
     "image_url": "https://avatars.mds.yandex.net/i?id=515ec564c0f7b2f940d3f4c1847c95be-5200893-images-thumbs&n=13"
   },
   {
     "id": "15",
     "title": "Яйца куриные",
-    "season_start": 1,
-    "season_end": 12,
+    "season_start": null,
+    "season_end": null,
     "description": "Яйца доступны круглый год. Необходимый ингредиент для блинов, выпечки, салатов.",
     "image_url": "https://avatars.mds.yandex.net/i?id=4a6a6ebdbdfad3fe63ab99c5c4871d4e_l-4642309-images-thumbs&n=13"
   },
   {
     "id": "16",
     "title": "Курица",
-    "season_start": 1,
-    "season_end": 12,
+    "season_start": null,
+    "season_end": null,
     "description": "Куриное мясо — универсальный продукт, доступен в магазинах круглый год.",
     "image_url": "https://avatars.mds.yandex.net/i?id=99a4e7b7a1549e5908d1f62d5b0a3c86_l-5508566-images-thumbs&n=13"
   },
   {
     "id": "17",
     "title": "Молоко",
-    "season_start": 1,
-    "season_end": 12,
+    "season_start": null,
+    "season_end": null,
     "description": "Основа выпечки, пудингов, каш и многие других блюд. Доступно в течение всего года.",
     "image_url": "https://avatars.mds.yandex.net/i?id=96bbbe23e5dda3600b1f3ccd0b3e7325_l-5238170-images-thumbs&n=13"
   },
