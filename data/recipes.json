@@ -8,7 +8,7 @@
     "product_id": "1",
     "cooking_time": "40",
     "budget_level": "бюджетный",
-    "image_url": "https://avatars.dzeninfra.ru/get-zen_doc/1879098/pub_63a1cfb53968ec7fe84b6f2c_63a1cfb6c980fd7ff680ac1b/scale_1200"
+    "image_url": "https://cdn.food.ru/unsigned/fit/640/480/ce/0/czM6Ly9tZWRpYS9waWN0dXJlcy8yMDI0MTEyNy9yVUtpVEEuanBlZw.jpg"
   },
   {
     "id": "2",
@@ -19,7 +19,7 @@
     "product_id": null,
     "cooking_time": "120",
     "budget_level": "средний",
-    "image_url": "https://avatars.dzeninfra.ru/get-zen_doc/1643580/pub_5cb06cddc4b7a700b335f31c_5cb06cff89cbcc00b3ea7aeb/scale_1200"
+    "image_url": "https://www.koolinar.ru/all_image/article/6/6503/article-e0b8262c-fbd5-4090-89e1-618456e4d586_large.jpg"
   },
   {
     "id": "3",
@@ -30,7 +30,7 @@
     "product_id": null,
     "cooking_time": "30",
     "budget_level": "бюджетный",
-    "image_url": "https://avatars.dzeninfra.ru/get-zen_doc/96860/pub_601ff19d746bdd755221c2a3_601ff4d27184024e45208609/scale_1200"
+    "image_url": "https://avatars.mds.yandex.net/i?id=904331400fd823de2b0407fae78b2224_l-5879173-images-thumbs&n=13"
   },
   {
     "id": "4",
@@ -41,18 +41,18 @@
     "product_id": null,
     "cooking_time": "60",
     "budget_level": "бюджетный",
-    "image_url": "https://avatars.dzeninfra.ru/get-zen_doc/9461510/pub_63a853391d96564a8dc2660c_63a8533ad2cdd771afec9e2b/scale_1200"
+    "image_url": "https://cdn.food.ru/unsigned/fit/640/480/ce/0/czM6Ly9tZWRpYS9waWN0dXJlcy8yMDI1MDExNy8zbmJ4VVcuanBlZw.jpg"
   },
   {
     "id": "5",
-    "title": "Салат «Шуба»",
+    "title": "Салат «Селёдка под шубой»",
     "ingredients": "Свёкла 2 шт, картофель 3 шт, морковь 2 шт, сельдь 1 шт, лук 1 шт, яйца 3 шт, майонез 200 г",
     "instructions": "1. Свёклу, картофель, морковь и яйца отварить, остудить и очистить. 2. Все овощи натереть по отдельности на крупной тёрке. 3. Сельдь нарезать кубиками, лук мелко порубить. 4. Выложить слоями: картофель, чуть майонеза, сельдь, лук, морковь, яйца, свёкла. Каждый слой промазать майонезом. 5. Дать салату настояться в холодильнике 2-3 часа.",
     "holiday_id": "1",
-    "product_id": null,
+    "product_id": "7",
     "cooking_time": "90",
     "budget_level": "бюджетный",
-    "image_url": "https://avatars.dzeninfra.ru/get-zen_doc/2773166/pub_5e17826fd595a200b131e4a8_5e1782d4bcdc1b00ae2fd789/scale_1200"
+    "image_url": "https://e3.edimdoma.ru/system/images/contents/0001/4812/popup/imgonline-com-ua-Compressed-0FMPIIAtk27G0E.jpg?1768915795"
   },
   {
     "id": "6",
@@ -63,7 +63,7 @@
     "product_id": null,
     "cooking_time": "25",
     "budget_level": "бюджетный",
-    "image_url": "https://avatars.dzeninfra.ru/get-zen_doc/4280017/pub_64299b59de6dce59761d0c8b_64299b93e57a4411ca09c3b8/scale_1200"
+    "image_url": "https://img.pravda.ru/image/preview/article/5/7/5/2205575_amp.jpeg"
   },
   {
     "id": "7",
@@ -74,7 +74,7 @@
     "product_id": null,
     "cooking_time": "90",
     "budget_level": "бюджетный",
-    "image_url": "https://avatars.dzeninfra.ru/get-zen_doc/1599058/pub_5c311e24d5125e00aa794fa2_5c311e497c6b9e00ab079ea7/scale_1200"
+    "image_url": "https://retro.ua/wp-content/uploads/2025/12/koly-varyat-kutyu.jpg"
   },
   {
     "id": "8",
@@ -82,10 +82,10 @@
     "ingredients": "Филе лосося 400 г, картофель 4 шт, морковь 1 шт, лук 1 шт, лавровый лист, перец, соль, зелень",
     "instructions": "1. Картофель, морковь и лук очистить и нарезать. 2. В кастрюле довести до кипения воду, добавить овощи, варить 10 минут. 3. Положить куски лосося, добавить лавровый лист, соль, перец. 4. Варить ещё 10 минут. 5. Добавить зелень перед подачей.",
     "holiday_id": null,
-    "product_id": "2",
+    "product_id": "2, 5, 7",
     "cooking_time": "35",
     "budget_level": "средний",
-    "image_url": "https://avatars.dzeninfra.ru/get-zen_doc/2316356/pub_5d8a3f83bc1a5b00aed9b7b3_5d8a3f99d548fd00ae7e8fd6/scale_1200"
+    "image_url": "https://avatars.mds.yandex.net/i?id=095e9f7ab8c1676ffcf728037e8c80ee_l-4389215-images-thumbs&n=13"
   },
   {
     "id": "9",
@@ -96,6 +96,6 @@
     "product_id": "3",
     "cooking_time": "45",
     "budget_level": "бюджетный",
-    "image_url": "https://avatars.dzeninfra.ru/get-zen_doc/5216415/pub_63f4b97ed3a89f77d99dbbd5_63f4b993eeb51a7813b0ee16/scale_1200"
+    "image_url": "https://avatars.mds.yandex.net/i?id=7ead4420df87ed3ff52df5eca9092018_l-5166690-images-thumbs&n=13"
   }
 ]
