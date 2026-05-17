@@ -5,6 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Сезонные рецепты | Главная</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Стили для рекламных блоков */
+        .ad-banner {
+            background: #faf3d6;
+            border: 2px dashed #d0ba85;
+            border-radius: 12px;
+            margin: 24px 0 24px 0;
+            min-width: 140px;
+            max-width: 220px;
+            padding: 36px 16px;
+            text-align: center;
+            font-size: 1.18rem;
+            color: #b89e52;
+            font-weight: bold;
+            box-shadow: 0 2px 12px rgba(193, 162, 56, 0.07);
+            position: sticky;
+            top: 32px;
+        }
+        .page-banner-layout {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 22px;
+            width: 100%;
+        }
+        /* Адаптация для мобильных — скрыть боковые баннеры */
+        @media (max-width: 1100px) {
+            .ad-banner {
+                display: none;
+            }
+            .page-banner-layout {
+                gap: 0;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -20,41 +55,49 @@
         </div>
     </header>
 
+    <div class="page-banner-layout">
+        <!-- Левая рекламная позиция -->
+        <div class="ad-banner">Место для вашей рекламы</div>
+
+        <main class="container" style="flex:1 1 auto;max-width:1020px;">
+            <div class="main-layout">
+                <!-- Левая колонка: календарь -->
+                <aside class="calendar-sidebar">
+                    <section class="calendar-section">
+                        <h2 class="section-title">📅 Календарь праздников</h2>
+                        <div id="calendar" class="calendar"></div>
+                    </section>
+                </aside>
+
+                <!-- Правая колонка: основной контент -->
+                <div class="main-content">
+                    <!-- Блок текущего праздника (или приветственный) -->
+                    <section id="current-holiday" class="hero">
+                        <h2 id="holiday-title"></h2>
+                        <p id="holiday-description"></p>
+                        <a id="holiday-link" href="" class="btn">Праздничные рецепты →</a>
+                    </section>
+
+                    <!-- Сезонные продукты -->
+                    <section>
+                        <h2 class="section-title">🍅 Сейчас в сезоне</h2>
+                        <div id="products-grid" class="grid"></div>
+                    </section>
+
+                    <!-- Рецепты недели -->
+                    <section>
+                        <h2 class="section-title">📖 Рецепты недели</h2>
+                        <div id="recipes-grid" class="grid"></div>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <!-- Правая рекламная позиция -->
+        <div class="ad-banner">Место для вашей рекламы</div>
+    </div>
+
     <script src="js/main.js"></script>
     <script src="js/index.js"></script>
 </body>
 </html>
-
-<main class="container">
-    <div class="main-layout">
-        <!-- Левая колонка: календарь -->
-        <aside class="calendar-sidebar">
-            <section class="calendar-section">
-                <h2 class="section-title">📅 Календарь праздников</h2>
-                <div id="calendar" class="calendar"></div>
-            </section>
-        </aside>
-
-        <!-- Правая колонка: основной контент -->
-        <div class="main-content">
-            <!-- Блок текущего праздника (или приветственный) -->
-            <section id="current-holiday" class="hero">
-                <h2 id="holiday-title"></h2>
-                <p id="holiday-description"></p>
-                <a id="holiday-link" href="" class="btn">Праздничные рецепты →</a>
-            </section>
-
-            <!-- Сезонные продукты -->
-            <section>
-                <h2 class="section-title">🍅 Сейчас в сезоне</h2>
-                <div id="products-grid" class="grid"></div>
-            </section>
-
-            <!-- Рецепты недели -->
-            <section>
-                <h2 class="section-title">📖 Рецепты недели</h2>
-                <div id="recipes-grid" class="grid"></div>
-            </section>
-        </div>
-    </div>
-</main>
