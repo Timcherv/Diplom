@@ -94,6 +94,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    // Переписанная фильтрация по месяцам: возвращаем все рецепты для продуктов, сезонных для выбранного месяца
+    function filterRecipesByMonth(recipes, products, selectedMonth) {
+        // Находим все продукты, сезонные для выбранного месяца
+        const seasonalProductIds = products
+            .filter(product => productIsInSeason(product, selectedMonth))
+            .map(product => product.id);
+
+        // Возвращаем все рецепты, у которых product_id совпадает с любым из seasonalProductIds
+        return recipes.filter(recipe => 
+            recipe.product_id && seasonalProductIds.includes(String(recipe.product_id))
+        );
+    }
+
     // Основная функция фильтрации
     function filterRecipes() {
         let filtered = [...recipes];
