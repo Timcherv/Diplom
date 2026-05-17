@@ -97,7 +97,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Сезонные продукты
-    const seasonal = getSeasonalProducts();
+    // Изменение: не включать круглогодичные продукты (season_start == null || season_end == null)
+    const seasonal = getSeasonalProducts().filter(p => p.season_start !== null && p.season_end !== null);
     const prodGrid = document.getElementById('products-grid');
     if (seasonal.length) {
         prodGrid.innerHTML = seasonal.slice(0,4).map(p => `
@@ -114,10 +115,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         prodGrid.innerHTML = '<p>В этом сезоне нет продуктов. Загляните позже!</p>';
     }
 
-    // Случайные рецепты
-    const randRec = getRandomRecipes(4);
+    // Случайные рецепты из полного списка recipes
+    // Предполагается, что recipes загружен в loadAllData и доступен глобально
+    function getRandomItems(arr, count) {
+        // Копируем массив и перемешиваем (Fisher–Yates)
+        const shuffled = arr.slice();
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled.slice(0, count);
+    }
+
     const recGrid = document.getElementById('recipes-grid');
-    if (randRec.length) {
+    if (Array.isArray(recipes) && recipes.length) {
+        const randRec = getRandomItems(recipes, 4);
         recGrid.innerHTML = randRec.map(r => `
             <div class="card">
                 <img src="${r.image_url || 'https://via.placeholder.com/300x200?text='+encodeURIComponent(r.title)}" alt="${r.title}">
