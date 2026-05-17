@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const recipesContainer = document.getElementById('recipes-grid');
     const holidayFilter = document.getElementById('filter-holiday');
     const productFilter = document.getElementById('filter-product');
+    const monthFilter = document.getElementById('filter-month');
     const applyFiltersBtn = document.getElementById('apply-filters');
 
     // --- Модальное окно для рецепта ---
@@ -54,7 +55,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    // Заполнение селектов фильтра
+    // Заполнение селектов фильтра, включая фильтр по месяцам
     function populateFilters() {
         if (holidayFilter) {
             holidayFilter.innerHTML = '<option value="">Все праздники</option>' +
@@ -64,15 +65,50 @@ document.addEventListener('DOMContentLoaded', async () => {
             productFilter.innerHTML = '<option value="">Все продукты</option>' +
                 products.map(p => `<option value="${p.id}">${p.title}</option>`).join('');
         }
+        if (monthFilter) {
+            // months: 1 - 12
+            const monthNamesRU = [
+                'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+                'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+            ];
+            monthFilter.innerHTML = '<option value="">Все месяцы</option>' +
+                monthNamesRU.map((m, i) => `<option value="${i+1}">${m}</option>`).join('');
+        }
     }
 
+    // Проверка, собирается ли продукт в выбранном месяце
+    function productIsHarvestedInMonth(product, month) {
+        // product.harvest_months is массив номеров месяцев (1-12) или строка
+        if (!product || !product.harvest_months) return false;
+        if (Array.isArray(product.harvest_months)) {
+            return product.harvest_months.includes(Number(month));
+        }
+        // Если значение строкой, например "3,4,5", split и проверка
+        if (typeof product.harvest_months === "string") {
+            return product.harvest_months.split(',').map(x=>Number(x.trim())).includes(Number(month));
+        }
+        return false;
+    }
+
+    // Основная функция фильтрации
     function filterRecipes() {
         let filtered = [...recipes];
+
         if (holidayFilter && holidayFilter.value) {
             filtered = filtered.filter(r => r.holiday_id == holidayFilter.value);
         }
         if (productFilter && productFilter.value) {
             filtered = filtered.filter(r => r.product_id == productFilter.value);
+        }
+        // Новый блок: фильтрация по месяцу сбора продуктов
+        if (monthFilter && monthFilter.value) {
+            const selectedMonth = Number(monthFilter.value);
+
+            filtered = filtered.filter(recipe => {
+                if (!recipe.product_id) return false;
+                const product = products.find(p => p.id == recipe.product_id);
+                return productIsHarvestedInMonth(product, selectedMonth);
+            });
         }
         return filtered;
     }
@@ -131,6 +167,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (applyFiltersBtn) {
         applyFiltersBtn.addEventListener('click', () => {
+            renderRecipes(filterRecipes());
+        });
+    }
+
+    // При изменении фильтра по месяцам сразу применяем фильтр
+    if (monthFilter) {
+        monthFilter.addEventListener('change', () => {
             renderRecipes(filterRecipes());
         });
     }

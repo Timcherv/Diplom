@@ -13,7 +13,7 @@
             <nav>
                 <ul>
                     <li><a href="index.html">Главная</a></li>
-                    <li><a href="recipes.html" class="active">Все рецепты</a>
+                    <li><a href="recipes.html" class="active">Все рецепты</a></li>
                     <li><a href="holidays.html">Праздники</a></li>
                 </ul>
             </nav>
@@ -32,12 +32,29 @@
                 <label for="filter-product">По продукту:</label>
                 <select id="filter-product"></select>
             </div>
+            <div class="filter-group">
+                <label for="filter-month">По месяцу:</label>
+                <select id="filter-month">
+                    <option value="">Все месяцы</option>
+                    <option value="1">Январь</option>
+                    <option value="2">Февраль</option>
+                    <option value="3">Март</option>
+                    <option value="4">Апрель</option>
+                    <option value="5">Май</option>
+                    <option value="6">Июнь</option>
+                    <option value="7">Июль</option>
+                    <option value="8">Август</option>
+                    <option value="9">Сентябрь</option>
+                    <option value="10">Октябрь</option>
+                    <option value="11">Ноябрь</option>
+                    <option value="12">Декабрь</option>
+                </select>
+            </div>
             <button id="apply-filters" class="btn">Применить</button>
         </div>
 
         <div id="recipes-grid" class="grid"></div>
     </main>
-
 
     <script src="js/main.js"></script>
     <script src="js/recipes.js"></script>
