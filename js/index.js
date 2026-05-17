@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         hLink.textContent = 'Праздничные рецепты →';
     } else {
         hTitle.textContent = 'Праздничные рецепты';
-        hDesc.textContent = 'Вдохновляйтесь рецептами к разным праздникам круглый год';
+        hDesc.textContent = 'Похоже, сегодня нет праздника, но вы можете посмотреть когда будет следующий.';
         hLink.href = 'holidays.html';
         hLink.textContent = 'Все праздники →';
     }
@@ -124,10 +124,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <div class="card-content">
                     <h3>${r.title}</h3>
                     <p>${r.ingredients?.substring(0,60) || ''}</p>
-                    <div class="meta">
-                        <span>⏱ ${r.cooking_time || '?'} мин</span>
-                        <span class="badge ${r.budget_level === 'бюджетный' ? 'budget' : (r.budget_level === 'средний' ? 'medium' : 'expensive')}">${r.budget_level || 'средний'}</span>
-                    </div>
                     <a href="recipe.html?id=${r.id}" class="btn">Подробнее</a>
                 </div>
             </div>
