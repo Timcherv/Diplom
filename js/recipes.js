@@ -66,7 +66,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 products.map(p => `<option value="${p.id}">${p.title}</option>`).join('');
         }
         if (monthFilter) {
-            // months: 1 - 12
             const monthNamesRU = [
                 'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
                 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
@@ -76,35 +75,32 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    // Проверка, находится ли месяц в интервале сезонности продукта
+    // Проверка, попадает ли месяц в сезон продукта (см. пример с products.json)
     function productIsInSeason(product, month) {
-        // Ожидаем поля season_start и season_end в product (1-12)
-        if (!product || typeof product.season_start === 'undefined' || typeof product.season_end === 'undefined') return false;
+        // Ожидаем поля season_start и season_end в product (1-12, включительно)
+        if (!product || product.season_start === undefined || product.season_end === undefined) return false;
+
         const start = Number(product.season_start);
         const end = Number(product.season_end);
-        month = Number(month);
-        if (!start || !end) return false;
+        const m = Number(month);
+        if (!start || !end || !m) return false;
 
-        // Если сезонный диапазон не завернут через декабрь
         if (start <= end) {
-            return month >= start && month <= end;
+            // обычный сезон: например, май-июль (5-7)
+            return m >= start && m <= end;
         } else {
-            // Завернутый сезон: например, с ноября (11) по март (3)
-            return (month >= start && month <= 12) || (month >= 1 && month <= end);
+            // сезон через декабрь, например ноябрь-март (11-3)
+            return m >= start || m <= end;
         }
     }
 
-    // Переписанная фильтрация по месяцам: возвращаем все рецепты для продуктов, сезонных для выбранного месяца
+    // Фильтрация рецептов по выбранному месяцу, основываясь на сезонности продукта
     function filterRecipesByMonth(recipes, products, selectedMonth) {
-        // Находим все продукты, сезонные для выбранного месяца
-        const seasonalProductIds = products
-            .filter(product => productIsInSeason(product, selectedMonth))
-            .map(product => product.id);
-
-        // Возвращаем все рецепты, у которых product_id совпадает с любым из seasonalProductIds
-        return recipes.filter(recipe => 
-            recipe.product_id && seasonalProductIds.includes(String(recipe.product_id))
-        );
+        if (!selectedMonth) return recipes;
+        // Найти продукты, которые сезонны для месяца
+        const seasonalProducts = products.filter(p => productIsInSeason(p, selectedMonth)).map(p => String(p.id));
+        // Выбрать рецепты для сезонных продуктов
+        return recipes.filter(r => r.product_id && seasonalProducts.includes(String(r.product_id)));
     }
 
     // Основная функция фильтрации
