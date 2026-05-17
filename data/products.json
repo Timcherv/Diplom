@@ -50,9 +50,121 @@
   {
     "id": "7",
     "title": "Картофель",
-    "season_start": 3,
-    "season_end": 4,
-    "description": "Картошка, используется во многих рецептах супов и горячих блюд",
+    "season_start": 7,
+    "season_end": 9,
+    "description": "Картофель свежего урожая появляется в июне-июле, основной сбор ― август-сентябрь. Используется в супах и горячих блюдах.",
     "image_url": "https://avatars.mds.yandex.net/i?id=824a7026aa2f12869b314ae578d3449a68c2ae63-3754358-images-thumbs&n=13"
+  },
+  {
+    "id": "8",
+    "title": "Лук репчатый",
+    "season_start": 7,
+    "season_end": 9,
+    "description": "Лук используется в салатах, супах, горячих блюдах на протяжении всего года, но наибольшая свежесть — летом и осенью.",
+    "image_url": "https://avatars.mds.yandex.net/i?id=49a4eedbbef8de23c90c14b7e49c1e88-5876367-images-thumbs&n=13"
+  },
+  {
+    "id": "9",
+    "title": "Свёкла",
+    "season_start": 7,
+    "season_end": 10,
+    "description": "Свежий урожай обычно поступает с июля по октябрь. Необходима для салатов и супов.",
+    "image_url": "https://avatars.mds.yandex.net/i?id=95a2237f9b33fbb0a661ecc9e00c9287-5086951-images-thumbs&n=13"
+  },
+  {
+    "id": "10",
+    "title": "Морковь",
+    "season_start": 7,
+    "season_end": 10,
+    "description": "С корнеплодом начинают собирать в июле, массовый сбор — август-сентябрь. Необходима в супах, салатах и рагу.",
+    "image_url": "https://avatars.mds.yandex.net/i?id=8c67ccc1055126ee54c38af6be0156a4-4312733-images-thumbs&n=13"
+  },
+  {
+    "id": "11",
+    "title": "Вишня",
+    "season_start": 6,
+    "season_end": 7,
+    "description": "Ягода, используемая для начинки вареников, десертов, компотов. Сбор — июнь-июль.",
+    "image_url": "https://avatars.mds.yandex.net/i?id=6dabf457c2f072ad3b3af2c33fa01c5c6f112b7a-3903021-images-thumbs&n=13"
+  },
+  {
+    "id": "12",
+    "title": "Зелёный горошек",
+    "season_start": 6,
+    "season_end": 8,
+    "description": "Свежий с июня по август. Используется в салатах, гарнирах и супах.",
+    "image_url": "https://avatars.mds.yandex.net/i?id=a7e22e5ebf8b5a2a10405be2f5c74009-5232782-images-thumbs&n=13"
+  },
+  {
+    "id": "13",
+    "title": "Капуста белокочанная",
+    "season_start": 7,
+    "season_end": 10,
+    "description": "Сезон свежей капусты — июль-октябрь. Используется для пирогов, салатов, тушения.",
+    "image_url": "https://avatars.mds.yandex.net/i?id=07c1e6d8986285f0783d398d5ac5b248756ce7c2-4101291-images-thumbs&n=13"
+  },
+  {
+    "id": "14",
+    "title": "Творог",
+    "season_start": 1,
+    "season_end": 12,
+    "description": "Молочный продукт, доступен круглый год. Основной ингредиент сырников и выпечки.",
+    "image_url": "https://avatars.mds.yandex.net/i?id=515ec564c0f7b2f940d3f4c1847c95be-5200893-images-thumbs&n=13"
+  },
+  {
+    "id": "15",
+    "title": "Яйца куриные",
+    "season_start": 1,
+    "season_end": 12,
+    "description": "Яйца доступны круглый год. Необходимый ингредиент для блинов, выпечки, салатов.",
+    "image_url": "https://avatars.mds.yandex.net/i?id=4a6a6ebdbdfad3fe63ab99c5c4871d4e_l-4642309-images-thumbs&n=13"
+  },
+  {
+    "id": "16",
+    "title": "Курица",
+    "season_start": 1,
+    "season_end": 12,
+    "description": "Куриное мясо — универсальный продукт, доступен в магазинах круглый год.",
+    "image_url": "https://avatars.mds.yandex.net/i?id=99a4e7b7a1549e5908d1f62d5b0a3c86_l-5508566-images-thumbs&n=13"
+  },
+  {
+    "id": "17",
+    "title": "Молоко",
+    "season_start": 1,
+    "season_end": 12,
+    "description": "Основа выпечки, пудингов, каш и многие других блюд. Доступно в течение всего года.",
+    "image_url": "https://avatars.mds.yandex.net/i?id=96bbbe23e5dda3600b1f3ccd0b3e7325_l-5238170-images-thumbs&n=13"
+  },
+  {
+    "id": "18",
+    "title": "Пшеница (зерно/крупа)",
+    "season_start": 8,
+    "season_end": 9,
+    "description": "Основной злак для каш и кутьи, убирают в июле—сентябре.",
+    "image_url": "https://avatars.mds.yandex.net/i?id=f2d8a5e08e9d6a4e57f2f383a11f7da0-5453008-images-thumbs&n=13"
+  },
+  {
+    "id": "19",
+    "title": "Рыба",
+    "season_start": 5,
+    "season_end": 10,
+    "description": "Летний/осенний улов (щука, карп, окунь) особенно свеж с мая по октябрь. Используется в супах и вторых блюдах.",
+    "image_url": "https://avatars.mds.yandex.net/i?id=dbe44c7ba6cbf7b6af9e1e338fe9e4d3_l-5611980-images-thumbs&n=13"
+  },
+  {
+    "id": "20",
+    "title": "Яблоко",
+    "season_start": 8,
+    "season_end": 10,
+    "description": "Сбор яблок — август-октябрь. Используются для пирогов, варенья, компотов.",
+    "image_url": "https://avatars.mds.yandex.net/i?id=90e81c6e2e9962b2d6e7a3a0655e768d_l-4569343-images-thumbs&n=13"
+  },
+  {
+    "id": "21",
+    "title": "Грецкий орех",
+    "season_start": 9,
+    "season_end": 10,
+    "description": "Урожай собирают осенью, используется в выпечке, десертах и салатах.",
+    "image_url": "https://avatars.mds.yandex.net/i?id=ee26c97499bcb57ca8b9469e5bbd9dcb_l-5237638-images-thumbs&n=13"
   }
 ]
