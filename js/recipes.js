@@ -76,18 +76,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    // Проверка, собирается ли продукт в выбранном месяце
-    function productIsHarvestedInMonth(product, month) {
-        // product.harvest_months is массив номеров месяцев (1-12) или строка
-        if (!product || !product.harvest_months) return false;
-        if (Array.isArray(product.harvest_months)) {
-            return product.harvest_months.includes(Number(month));
+    // Проверка, находится ли месяц в интервале сезонности продукта
+    function productIsInSeason(product, month) {
+        // Ожидаем поля season_start и season_end в product (1-12)
+        if (!product || typeof product.season_start === 'undefined' || typeof product.season_end === 'undefined') return false;
+        const start = Number(product.season_start);
+        const end = Number(product.season_end);
+        month = Number(month);
+        if (!start || !end) return false;
+
+        // Если сезонный диапазон не завернут через декабрь
+        if (start <= end) {
+            return month >= start && month <= end;
+        } else {
+            // Завернутый сезон: например, с ноября (11) по март (3)
+            return (month >= start && month <= 12) || (month >= 1 && month <= end);
         }
-        // Если значение строкой, например "3,4,5", split и проверка
-        if (typeof product.harvest_months === "string") {
-            return product.harvest_months.split(',').map(x=>Number(x.trim())).includes(Number(month));
-        }
-        return false;
     }
 
     // Основная функция фильтрации
@@ -100,14 +104,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (productFilter && productFilter.value) {
             filtered = filtered.filter(r => r.product_id == productFilter.value);
         }
-        // Новый блок: фильтрация по месяцу сбора продуктов
+        // Фильтрация по месяцам по полям сезонности продукта (season_start, season_end)
         if (monthFilter && monthFilter.value) {
             const selectedMonth = Number(monthFilter.value);
 
             filtered = filtered.filter(recipe => {
                 if (!recipe.product_id) return false;
                 const product = products.find(p => p.id == recipe.product_id);
-                return productIsHarvestedInMonth(product, selectedMonth);
+                return productIsInSeason(product, selectedMonth);
             });
         }
         return filtered;
