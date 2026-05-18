@@ -41,7 +41,7 @@
     "product_id": "11",
     "cooking_time": "50",
     "budget_level": "бюджетный",
-    "image_url": "https://cdn.1000.menu/img/content-v2/1d/3d/13189/vareniki-s-vishnei-klassicheskie_1653652274_4_max.jpg"
+    "image_url": "https://avatars.mds.yandex.net/get-vertis-journal/4469561/c36dc3b6-21cb-400c-a8fc-419f242d8ad2.jpg/1600x1600"
   },
   {
     "id": "5",
@@ -63,7 +63,7 @@
     "product_id": "14",
     "cooking_time": "25",
     "budget_level": "бюджетный",
-    "image_url": "https://yamskovosdelano.ru/wp-content/uploads/6d/2021/09/syrniki-kak-v-sadu-1.jpg"
+    "image_url": "https://i.ytimg.com/vi/ScP4xyvoX8A/maxresdefault.jpg"
   },
   {
     "id": "7",
@@ -96,7 +96,7 @@
     "product_id": "19",
     "cooking_time": "40",
     "budget_level": "средний",
-    "image_url": "https://eda.ru/img/eda/c620x415/s1.eda.ru/StaticContent/Photos/120131085603/120209124614/p_O.jpg"
+    "image_url": "https://i.ytimg.com/vi/VICBNo1E2lA/maxresdefault.jpg"
   },
   {
     "id": "10",
@@ -107,7 +107,7 @@
     "product_id": null,
     "cooking_time": "60",
     "budget_level": "бюджетный",
-    "image_url": "https://img.povar.ru/mobile/0e/4e/39/00/pirog_s_zelenim_lukom_i_yaycom-601568.jpg"
+    "image_url": "https://i.ytimg.com/vi/21OzeKcWz-U/maxresdefault.jpg"
   },
   {
     "id": "11",
@@ -118,7 +118,7 @@
     "product_id": null,
     "cooking_time": "90",
     "budget_level": "средний",
-    "image_url": "https://static.1000.menu/img/content/58660/plov-iz-baraniny_1613039653_8_max.jpg"
+    "image_url": "https://www.koolinar.ru/all_image/article/4/4294/article-da327d42-99e1-452f-86d9-e5ba41341646_large.jpg"
   },
   {
     "id": "12",
@@ -129,7 +129,7 @@
     "product_id": null,
     "cooking_time": "65",
     "budget_level": "бюджетный",
-    "image_url": "https://www.gastronom.ru/binfiles/images/20150525/b563e39d.jpg"
+    "image_url": "https://i.ytimg.com/vi/_ZaNxMRdGV4/maxresdefault.jpg"
   },
   {
     "id": "13",
@@ -140,7 +140,7 @@
     "product_id": null,
     "cooking_time": "120",
     "budget_level": "средний",
-    "image_url": "https://static.1000.menu/img/content-v2/25/f0/47905/shashlyk-v-multivarke-iz-baraniny_1622089919_25_max.jpg"
+    "image_url": "https://images.gastronom.ru/0Kw9TjywO2VuE4mc3rQ6PsHuLBG71q8pyylqXOfNfn0/pr:article-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzL2VmMTRlMjAxLWNhNTEtNGI1MC05ZTg2LWY4YWExZjJlYzc3Mi5qcGc.webp"
   },
   {
     "id": "14",
@@ -151,7 +151,7 @@
     "product_id": "20",
     "cooking_time": "55",
     "budget_level": "бюджетный",
-    "image_url": "https://static.1000.menu/img/content-v2/50/19/50319/yablochnyi-pirog-na-bystruyu-ruku_1621176425_19_max.jpg"
+    "image_url": "https://images.news.ru/2025/07/01/hxX8bdau6XuYFeJsb3hejmSclw4eky2LCxmXecDz_780.png"
   },
   {
     "id": "15",
@@ -162,7 +162,7 @@
     "product_id": "20",
     "cooking_time": "60",
     "budget_level": "бюджетный",
-    "image_url": "https://img.povar.ru/mobile/44/19/10/6c/yablochnoe_varene_na_zimu-8685.jpg"
+    "image_url": "https://i.ytimg.com/vi/i6O5vfg9vPw/maxresdefault.jpg"
   },
   {
     "id": "16",
@@ -173,7 +173,7 @@
     "product_id": null,
     "cooking_time": "30",
     "budget_level": "бюджетный",
-    "image_url": "https://img1.russianfood.com/dycontent/images_upl/386/big_385206.jpg"
+    "image_url": "https://i.pinimg.com/originals/2d/12/34/2d1234bde57ba8e7dc584257edf1b26b.png"
   },
   {
     "id": "17",
@@ -184,7 +184,7 @@
     "product_id": null,
     "cooking_time": "720",
     "budget_level": "бюджетный",
-    "image_url": "https://1000.menu/cooking/48b/kvass_domashnii_na_xlebe_s_myodom_1580564204_10_prev.jpg"
+    "image_url": "https://slavtradition.com/images/svodki/2022/09/11/7.jpg"
   },
   {
     "id": "18",
@@ -195,18 +195,7 @@
     "product_id": "21",
     "cooking_time": "60",
     "budget_level": "средний",
-    "image_url": "https://img.povar.ru/mobile/64/ca/11/58/orehoviy_pirog-612379.jpg"
-  },
-  {
-    "id": "19",
-    "title": "Пряники с орехами",
-    "ingredients": "Мука 400 г, мёд 120 г, сахар 150 г, яйцо 1 шт, орехи 120 г, сода 1 ч.л., специи",
-    "instructions": "1. Мёд растопить с сахаром, добавить яйцо, муку, специи, орехи и соду. 2. Замесить тесто, раскатать, вырезать пряники. 3. Выпекать 15–20 мин при 180°C.",
-    "holiday_id": "16",
-    "product_id": "21",
-    "cooking_time": "40",
-    "budget_level": "бюджетный",
-    "image_url": "https://static.1000.menu/img/content-v2/67/32/44853/pryaniki-s-orekhami_1619777896_30_max.jpg"
+    "image_url": "https://i.ytimg.com/vi/fkXnMz6LYM0/maxresdefault.jpg"
   },
   {
     "id": "20",
@@ -217,7 +206,7 @@
     "product_id": "18",
     "cooking_time": "35",
     "budget_level": "бюджетный",
-    "image_url": "https://eda.ru/img/eda/c620x415/s1.eda.ru/StaticContent/Photos/120213145925/120309171056/p_O.jpg"
+    "image_url": "https://caoinform.moscow/wp-content/uploads/sites/38/2024/03/bezymyannyj-1-e1710313575778.png"
   },
   {
     "id": "21",
@@ -228,7 +217,7 @@
     "product_id": "19",
     "cooking_time": "55",
     "budget_level": "средний",
-    "image_url": "https://www.koolinar.ru/all_image/recipes/70/70641/recipe_d1bc1c7f-4041-45a8-9cdf-d5a9fc5e6e49.jpg"
+    "image_url": "https://avatars.mds.yandex.net/i?id=f955f3532a810fe5f6bd7e971a062f3eeb910a68-5885354-images-thumbs&n=13"
   },
   {
     "id": "22",
@@ -239,29 +228,29 @@
     "product_id": "13",
     "cooking_time": "70",
     "budget_level": "бюджетный",
-    "image_url": "https://img.povar.ru/mobile/d2/80/40/d2/pirogi_s_kapustoi-817776.jpg"
+    "image_url": "https://i.ytimg.com/vi/Tq0f5Nviefc/maxresdefault.jpg"
   },
   {
     "id": "23",
-    "title": "Шешбеш (осенние пироги)",
+    "title": "Осенние пироги",
     "ingredients": "Мука 500 г, масло сливочное 100 г, кефир 250 мл, яйца 2 шт, тыква 300 г, сахар, соль",
     "instructions": "1. Замесить песочное тесто из муки, масла, яиц, сахара и кефира. 2. Тыкву натереть и смешать с сахаром. 3. Выложить в тесто, сформировать пироги, выпекать 30 мин при 180°C.",
     "holiday_id": "19",
     "product_id": null,
     "cooking_time": "60",
     "budget_level": "средний",
-    "image_url": "https://img1.russianfood.com/dycontent/images_upl/352/big_351882.jpg"
+    "image_url": "https://www.koolinar.ru/all_image/recipes/141/141645/recipe_d7d49149-83c1-47ca-a20f-381ce1990460.jpg"
   },
   {
     "id": "24",
-    "title": "Жаркое по-домашнему (Новогодний ужин)",
+    "title": "Жаркое по-домашнему",
     "ingredients": "Свинина 500 г, картофель 5 шт, лук 2 шт, морковь 1 шт, масло растительное, соль, перец, лавровый лист",
     "instructions": "1. Нарезать мясо кубиками, обжарить на растительном масле. 2. Добавить нарезанный лук и морковь, немного обжарить. 3. Выложить мясо с овощами в жаропрочную форму, добавить нарезанный картофель, соль, перец, лавровый лист, 200 мл воды. 4. Запекать под крышкой 1 час при 180°C.",
     "holiday_id": "1",
     "product_id": "14",
     "cooking_time": "90",
     "budget_level": "средний",
-    "image_url": "https://gotovim-doma.ru/images/recipe/7/f0/7f0c27d6187c1c7d88b964e7a0311ad8_l.jpg"
+    "image_url": "https://img.povar.ru/main-micro/e7/69/a2/b0/jarkoe_po-derevenski-884114.JPG"
   },
   {
     "id": "25",
@@ -272,40 +261,40 @@
     "product_id": "7",
     "cooking_time": "20",
     "budget_level": "средний",
-    "image_url": "https://img1.russianfood.com/dycontent/images_upl/100/big_99852.jpg"
+    "image_url": "https://images.gastronom.ru/ihfkf1FQ5EIQDXkgGTs-SC_SP-WakJOyvzIMfnET5GE/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzU1NjQ1MjY3LTUxYmMtNGFjNC04ODQ3LWY2MWY0NjJiYjEwYi5qcGc.webp"
   },
   {
     "id": "26",
-    "title": "Запечённая утиная грудка с медом (на Рождество)",
+    "title": "Запечённая утиная грудка с медом",
     "ingredients": "Утиная грудка 2 шт, мёд 2 ст. л., соевый соус 2 ст. л., имбирь молотый 0,5 ч. л., чеснок 2 зубчика, соль, перец",
     "instructions": "1. Соединить мёд, соевый соус, тертый чеснок, имбирь, соль и перец. 2. Замариновать утиные грудки на 1 час. 3. Выложить грудки кожей вверх в форму, залить маринадом. 4. Запекать при 200°C 30-35 минут, поливая соком.",
     "holiday_id": "2",
     "product_id": "12",
     "cooking_time": "70",
     "budget_level": "дорогой",
-    "image_url": "https://static.1000.menu/img/content-v2/94/37/60669/utica-zapechennaya-v-duxovke_1610536437_5_max.jpg"
+    "image_url": "https://i.ytimg.com/vi/i9VsqFQwSOg/maxresdefault.jpg"
   },
   {
     "id": "27",
-    "title": "Пирожки с маком (рождественское угощение)",
+    "title": "Пирожки с маком",
     "ingredients": "Мука 400 г, молоко 200 мл, дрожжи 7 г, сахар 60 г, яйцо 1 шт, сливочное масло 50 г, мак 80 г, ванилин, соль",
     "instructions": "1. Замесить дрожжевое тесто из муки, тёплого молока, дрожжей, яйца, сахара, масла, соли, ванилина. 2. Мак проварить с сахаром и размолоть. 3. Тесто разделить на части, в каждую положить маковую начинку. 4. Сформировать пирожки, выпекать при 180°C 20-25 минут.",
     "holiday_id": "2",
     "product_id": "11",
     "cooking_time": "90",
     "budget_level": "бюджетный",
-    "image_url": "https://static.1000.menu/img/content/7497/pirojki-s-makom_1552817843_14_max.jpg"
+    "image_url": "https://i.ytimg.com/vi/UOsj_X0rRQA/maxresdefault.jpg"
   },
   {
     "id": "28",
-    "title": "Щи постные (на Крещение)",
+    "title": "Щи постные",
     "ingredients": "Капуста 400 г, картофель 2 шт, морковь 1 шт, лук 1 шт, томатная паста 1 ст. л., растительное масло, соль, перец",
     "instructions": "1. В кастрюлю налить 1,5 л воды, довести до кипения, добавить нашинкованную капусту. 2. Мелко нарезать картофель, добавить к капусте. 3. Поджарить на масле лук и морковь, добавить томатную пасту, обжарить. 4. Выложить зажарку в суп, посолить, поперчить, варить до готовности.",
     "holiday_id": "4",
     "product_id": "13",
     "cooking_time": "60",
     "budget_level": "бюджетный",
-    "image_url": "https://eda.ru/img/eda/c620x415/s1.eda.ru/StaticContent/Photos/121114150220/171001120032/p_O.jpg"
+    "image_url": "https://avatars.mds.yandex.net/i?id=1acb42360c6659182b2ffc8b177e48f4_l-4887196-images-thumbs&n=13"
   },
   {
     "id": "29",
@@ -316,18 +305,18 @@
     "product_id": "15",
     "cooking_time": "40",
     "budget_level": "бюджетный",
-    "image_url": "https://img1.russianfood.com/dycontent/images_upl/284/big_283837.jpg"
+    "image_url": "https://yandex-images.clstorage.net/das5b2198/558e9cTgd/iK8KI50KzYbHwxfNzs0X7FuwxHjw_ptypENI3IJAx9R2HXJN4X63tH805S960ua9njSZpZyZxSnlcyWoV3kdGOz2FgfhA5nG2s4njMv4asl30Kk9mOPaR4hqCdCGdJORX3gjXPAam8UOSfGbvlJTCDPZDERlfCxwsUZVsW8BUBkkEkdCpCaF1nvXO6HfQadAzgQ8MHhexw_A23gBCpADLQrtxkWdmmoUY9gd_95Glxh39YSsxYgMjGXG6RXubQQdQMNvAryOKdZLm5_NhymHZFpIxEjwNqfHmN_80RrIn536VSZV5d5OmDOgWatmCgcMD4XM1F0M0ACBJm0BgqmAcczr35KcbiEeG8dbyS9dO-je1LTcBGJbm6TDaFGC_JOZ_gnCIQ1qblyfIKmPfmKfOBcx0CR9gITYuSohMR6VVOmEDwfSJObpYmObp7FXTX-8moAMqMQ-Gz_EszwJgsSH7d6dTi0RCrq4y0yND0pCt-iPsWhASYxcyAXOSSGqDSyB3DMfhgjyLWqDi0fNR7Hj9JIM5BQA2s_3jBMU3RZQT5Ga8ba9cc7ulGdQqTvuekesC3XoWO2A1EShFmU1orGk_VBbg5oIJkXu3w-nob_pr-AqsLy08NLDw0xDUOkGyEc58g0i0RGK0swHwLXP3p7_sBe11FgxMKCgBdIRQeY1lIm4jxsi_DIZhiN31x2bFT-U1qicsFgGTw-U54hBppjfmeLloqFpmp60B6w1Q8pKzxD3beAgwbj8sG3abX0i2SxFdP8TGuRqacLXG6MNj21z4NKUjPiANi-_FE_YHbJIg12azX4B6eoqEL8MlY-iWgckayXwbF0wXLC5OgWVRoHwDQCjk9os-tXaE8NDseshv9CyrJj0ZA5HT0wf9AW6HBvN_oXG5Qlq6qRnMBGnjloz0MM9VOz99ASwjTqhPV7dfJloD5PmGHqF7hNDW1nnSSvcgiQ4vKAip8f4V-yR6hTs"
   },
   {
     "id": "30",
-    "title": "Запечённая каша с тыквой (Старый Новый год)",
+    "title": "Запечённая каша с тыквой",
     "ingredients": "Пшённая крупа 200 г, тыква 300 г, молоко 500 мл, сахар 3 ст. л., сливочное масло 30 г, ваниль",
     "instructions": "1. Тыкву нарезать кубиками, выложить в форму. 2. Крупу промыть, добавить к тыкве. 3. Влить молоко, посолить и добавить сахар, ваниль. 4. Сверху немного масла. 5. Запекать 1 час при 180°C.",
     "holiday_id": "3",
     "product_id": "11",
     "cooking_time": "70",
     "budget_level": "бюджетный",
-    "image_url": "https://img.povar.ru/mobile/7d/6c/8c/ff/zapechennaya_pshennaya_kasha_s_tikvoi-444137.jpg"
+    "image_url": "https://i.ytimg.com/vi/3BwnrHeNq6o/maxresdefault.jpg"
   },
   {
     "id": "31",
@@ -338,7 +327,7 @@
     "product_id": "18",
     "cooking_time": "45",
     "budget_level": "бюджетный",
-    "image_url": "https://img1.russianfood.com/dycontent/images_upl/235/big_234921.jpg"
+    "image_url": "https://i.pinimg.com/originals/68/6c/f3/686cf3f8d8db0a53e6ee54c1b57ecf05.jpg"
   },
   {
     "id": "32",
@@ -349,29 +338,29 @@
     "product_id": "9",
     "cooking_time": "45",
     "budget_level": "дорогой",
-    "image_url": "https://img.povar.ru/mobile/45/e5/35/60/blini_s_krasnoi_ikroi-719323.jpg"
+    "image_url": "https://www.koolinar.ru/all_image/article/5/5786/article-37f962ae-50a7-4c7b-80d9-fab8b8a3d8a9_large.jpg"
   },
   {
     "id": "33",
-    "title": "Печёночные оладьи (закуска на Масленицу)",
+    "title": "Печёночные оладьи",
     "ingredients": "Куриная печень 400 г, яйца 2 шт, мука 100 г, лук 1 шт, соль, перец, растительное масло",
     "instructions": "1. Печень и лук измельчить в блендере, добавить яйца, муку, соль и перец. 2. Хорошо перемешать массу. 3. Обжарить оладьи на разогретом масле с двух сторон до румяности.",
     "holiday_id": "5",
     "product_id": "8",
     "cooking_time": "35",
     "budget_level": "бюджетный",
-    "image_url": "https://img1.russianfood.com/dycontent/images_upl/134/big_133060.jpg"
+    "image_url": "https://i.ytimg.com/vi/ElX7yaiNxCc/maxresdefault.jpg"
   },
   {
     "id": "34",
-    "title": "Куриное филе в сливках (на 23 февраля)",
+    "title": "Куриное филе в сливках",
     "ingredients": "Куриное филе 500 г, сливки 200 мл, лук 1 шт, специи, соль, перец, масло растительное",
     "instructions": "1. Куриное филе нарезать и обжарить до золотистой корки. 2. Добавить лук, обжарить. 3. Влить сливки, специи, тушить на слабом огне 20 минут.",
     "holiday_id": "6",
     "product_id": "6",
     "cooking_time": "35",
     "budget_level": "средний",
-    "image_url": "https://img1.russianfood.com/dycontent/images_upl/353/big_352977.jpg"
+    "image_url": "https://i.ytimg.com/vi/4ERKydNMc3c/maxresdefault.jpg"
   },
   {
     "id": "35",
@@ -382,18 +371,18 @@
     "product_id": "17",
     "cooking_time": "60",
     "budget_level": "средний",
-    "image_url": "https://img1.russianfood.com/dycontent/images_upl/315/big_314864.jpg"
+    "image_url": "https://images.gastronom.ru/pjECYLf6EY8rDDYK4ma_GBF7cNQoBJ-GGWxwHJ6x1ZY/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzgxMGU4NDdkLTUxODUtNGI5OC05MGU5LTMxOTY0NTcyZTRmOC5qcGc.webp"
   },
   {
     "id": "36",
-    "title": "Салат «Весенний» (к 8 марта)",
+    "title": "Салат «Весенний»",
     "ingredients": "Редис 6 шт, свежий огурец 1 шт, зелёный лук, укроп, сметана 2 ст. л., соль",
     "instructions": "1. Редис и огурец нарезать кружочками. 2. Мелко порубить зелёный лук и укроп. 3. Всё смешать, посолить и заправить сметаной.",
     "holiday_id": "7",
     "product_id": "2",
     "cooking_time": "10",
     "budget_level": "бюджетный",
-    "image_url": "https://img1.russianfood.com/dycontent/images_upl/114/big_113792.jpg"
+    "image_url": "https://images.news.ru/photo/9d91558c-20e1-11f0-bdcd-ac1f6bad3ff4_780.jpg"
   },
   {
     "id": "37",
@@ -404,6 +393,6 @@
     "product_id": "1",
     "cooking_time": "15",
     "budget_level": "средний",
-    "image_url": "https://img1.russianfood.com/dycontent/images_upl/100/big_99945.jpg"
+    "image_url": "https://365news.biz/wp-content/uploads/2020/09/0b31295105d6920231a12ed0e029f0df.jpg"
   }
 ]
